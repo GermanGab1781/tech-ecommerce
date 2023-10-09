@@ -27,19 +27,19 @@ const Home = () => {
     return <motion.div initial="noView" animate="view" variants={variantsSlide} transition={{ duration: 2 }} className='bg-red-700 relative w-full h-[80vh] cursor-default grid grid-cols-2' >
       {/* col 1 */}
       <div className='relative flex border'>
-        <motion.div initial={{ y: -500 }} animate={{ y: 0 }} transition={{ duration: 1, delay: 1 }} className='w-[80%] h-[80%] border m-auto'>
+        <motion.div initial={{ y: -500 }} animate={{ y: 0 }} transition={{ duration: 1, delay: 0.2 }} className='w-[80%] h-[80%] border m-auto'>
           Image of someone smiling with them phone
         </motion.div>
       </div>
       {/* col 2 */}
       <div className='relative flex flex-col  gap-y-6 justify-center items-center border'>
-        <motion.div initial={{ y: -500 }} animate={{ y: 0 }} transition={{ duration: 1, delay: 1 }}>
+        <motion.div initial={{ y: -500 }} animate={{ y: 0 }} transition={{ duration: 1, delay: 0.2 }}>
           Featured Gadget
         </motion.div>
-        <motion.div initial={{ y: -500, x: 500 }} animate={{ y: 0, x: 0 }} transition={{ duration: 1, delay: 1 }} className='w-1/2 h-1/2 border '>
+        <motion.div initial={{ y: -500, x: 500 }} animate={{ y: 0, x: 0 }} transition={{ duration: 1, delay: 0.2 }} className='w-1/2 h-1/2 border '>
 
         </motion.div>
-        <motion.div initial={{ x: 500 }} animate={{ x: 0 }} transition={{ duration: 1, delay: 1 }} className='cursor-pointer'>
+        <motion.div initial={{ x: 500 }} animate={{ x: 0 }} transition={{ duration: 1, delay: 0.2 }} className='cursor-pointer'>
           READ MORE
         </motion.div>
       </div>
@@ -57,7 +57,7 @@ const Home = () => {
     <motion.div className='min-h-[100vh] py-16 grid gap-y-10 border'>
       {/* Slider */}
       <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={true} slideInterval={9000} autoPlay={false} additionalClass={''} />
-      <a href='#latestUpload' className='border text-center'>Checkmore</a>
+      <a href='#latestUpload' className='border text-center mb-20'>Checkmore</a>
 
       {/* Latest products */}
       <div ref={ref} id='latestUpload' className='h-[80vh] grid grid-cols-2 pt-16'>

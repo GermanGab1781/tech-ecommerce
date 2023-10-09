@@ -11,7 +11,7 @@ export default function Navbar() {
       animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div className='flex flex-row place-content-between md:px-10 px-5 absolute top-2 w-screen'>
         {/* Brand */}
-        <NavLink onClick={() => setNavButton(true)} className="my-auto" to="/Alwatoba"><span className="sm:h-full sm:w-full w-1/2 h-full sm:text-3xl text-xl">GogoGadget</span></NavLink>
+        <NavLink onClick={() => setNavButton(true)} className="my-auto" to="/"><span className="sm:h-full sm:w-full w-1/2 h-full sm:text-3xl text-xl">GogoGadget</span></NavLink>
         {/* Nav Opener */}
         <button onClick={() => setNavButton(!navButton)} className=" hover:text-slate-600 transition-all delay-75 "><FaBars className="sm:w-10 sm:h-12 h-10 w-8" /></button>
       </div>
