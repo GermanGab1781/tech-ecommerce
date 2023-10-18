@@ -22,8 +22,8 @@ export default function Navbar() {
       }>
         <>
           <NavLink className="text-center text-slate-100 cursor-pointer text-5xl transition-all delay-75" to="/" onClick={() => setNavButton(!navButton)}>Home</NavLink>
-          <NavLink className="text-black xl:text-4xl text-3xl transition-all delay-75" to="/Catalog/All" onClick={() => setNavButton(!navButton)}>Catalog</NavLink>
-          <NavLink className="text-black xl:text-3xl text-2xl transition-all delay-75" to="/Blogs" onClick={() => setNavButton(!navButton)}>About us</NavLink>
+          <NavLink className="text-black xl:text-4xl text-3xl transition-all delay-75" to="/Catalog" onClick={() => setNavButton(!navButton)}>Catalog</NavLink>
+          <NavLink className="text-black xl:text-3xl text-2xl transition-all delay-75" to="/" onClick={() => setNavButton(!navButton)}>About us</NavLink>
           <span className="text-center text-slate-100 cursor-pointer text-5xl transition-all delay-75 mt-10" onClick={() => setNavButton(!navButton)}>Close</span>
         </>
         <NavLink className="hover:text-slate-50 text-xl absolute right-10 bottom-5 transition-all delay-75" to="/login" onClick={() => setNavButton(!navButton)}>Admin</NavLink>
