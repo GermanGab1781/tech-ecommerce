@@ -1,8 +1,8 @@
 import React from 'react';
-
+import { motion } from 'framer-motion';
 const Item = (info) => {
   return (
-    <div className='flex flex-col border border-blue-900 m-5 w-48'>
+    <motion.div className='flex flex-col border border-blue-900 m-5 w-48 h-72'>
       <span className='h-[80%] bg-slate-400'>img</span>
       <div className='flex'>
         <div className='flex flex-col'>
@@ -13,7 +13,7 @@ const Item = (info) => {
 
       </div>
 
-    </div>
+    </motion.div>
   );
 }
 
