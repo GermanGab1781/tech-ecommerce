@@ -26,7 +26,7 @@ export default function Navbar() {
           <NavLink className="text-black xl:text-3xl text-2xl transition-all delay-75" to="/" onClick={() => setNavButton(!navButton)}>About us</NavLink>
           <span className="text-center text-slate-100 cursor-pointer text-5xl transition-all delay-75 mt-10" onClick={() => setNavButton(!navButton)}>Close</span>
         </>
-        <NavLink className="hover:text-slate-50 text-xl absolute right-10 bottom-5 transition-all delay-75" to="/login" onClick={() => setNavButton(!navButton)}>Admin</NavLink>
+        <NavLink className="hover:text-slate-50 text-xl absolute right-10 bottom-5 transition-all delay-75" to="/admin/login" onClick={() => setNavButton(!navButton)}>Admin</NavLink>
       </div>
 
     </motion.div>

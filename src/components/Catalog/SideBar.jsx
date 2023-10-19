@@ -10,7 +10,7 @@ const SideBar = ({ list, search }) => {
   }
 
   return (
-    <motion.div initial={{ opacity: 0, scale: 1.2 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}
       className='border w-[20%] z-0 flex flex-col h-full fixed overflow-hidden pt-16 gap-y-5'
     >
       <div className='border text-xl text-center hover:font-bold cursor-pointer select-none' onClick={() => handleClick(undefined)}>All</div>
