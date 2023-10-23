@@ -21,7 +21,7 @@ export default function Footer() {
   }
 
   return (
-    <div className="flex  md:flex-row flex-col gap-y-5 py-5 place-content-evenly text-center md:text-3xl text-xl">
+    <div className="flex md:flex-row flex-col gap-y-5 py-5 place-content-evenly text-center md:text-3xl text-xl">
 
       <div className=''>
         <span className='text-2xl md:text-3xl'>Contact</span>

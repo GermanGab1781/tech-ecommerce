@@ -7,11 +7,11 @@ import { AuthContextProvider } from './firebase';
 
 function App() {
   return (
-    <div >
+    <div className=''>
       <AuthContextProvider>
         <BrowserRouter>
           <Navbar />
-          <AnimatedRoutes />
+          <div className='min-h-screen py-16'><AnimatedRoutes /></div>
           <Footer />
         </BrowserRouter>
       </AuthContextProvider>

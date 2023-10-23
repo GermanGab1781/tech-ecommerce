@@ -54,7 +54,7 @@ const Home = () => {
     { renderItem: SecondSlide }
   ]
   return (
-    <motion.div className='min-h-[100vh] py-16 grid gap-y-10 border'>
+    <motion.div className='grid gap-y-10 border'>
       {/* Slider */}
       <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={true} slideInterval={9000} autoPlay={false} additionalClass={''} />
       <a href='#latestUpload' className='border text-center mb-20'>Checkmore</a>

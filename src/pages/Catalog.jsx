@@ -43,7 +43,7 @@ const Catalog = () => {
 
 
   return (
-    <div className='relative min-h-[100vh] pt-16 '>
+    <div className='relative pt-16 '>
       {categs &&
         <div className='flex border border-red-900 min-h-screen relative' >
           <SideBar list={categs} search={changeSearch} />

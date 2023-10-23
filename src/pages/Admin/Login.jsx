@@ -39,7 +39,7 @@ const Login = () => {
   }
 
   return (
-    <div className='flex items-center justify-center border place-content-center min-h-screen'>
+    <div className='flex items-center justify-center border place-content-center '>
       <form className='border text-center w-[80%] p-10' onSubmit={handleSignIn}>
         <label className=''>Email</label><br />
         <input className='border border-black' type="email" id="email" onChange={handleInput} /><br />
