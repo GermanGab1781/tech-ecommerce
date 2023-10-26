@@ -1,14 +1,94 @@
 import { collection, getDocs } from 'firebase/firestore'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useState, useEffect } from 'react'
-import { db } from '../../../firebase'
+import { db, storage } from '../../../firebase'
 import { useNavigate } from 'react-router-dom';
+import { doc, setDoc } from 'firebase/firestore';
+import { NavLink } from 'react-router-dom';
+import { v4 } from 'uuid';
 import Swal from 'sweetalert2';
 
 const Upload = () => {
   const [categories, setCategories] = useState(undefined)
+  const [images, setImages] = useState([])
   const [pass, setPass] = useState(false)
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const newDocProducto = doc(collection(db, "products/ProductsInfo/All"))
+
+  const [product, setProduct] = useState({
+    name: '',
+    brand: '',
+    price: '',
+    category: '',
+  })
+
+  const handleInput = e => {
+    const id = e.target.name
+    const value = e.target.value
+    setProduct({ ...product, [id]: value })
+    console.log(product)
+  }
+
+  const uploadImages = (customMsg) => {
+    return new Promise((resolve, reject) => {
+      if (images.length === 0) {
+        Swal.fire({ icon: 'error', title: 'Subir mínimo una imagen' });
+        reject(new Error('Imagenes Vacias'));
+      } else {
+        Swal.fire({ icon: 'info', title: 'Archivo subiendo', showConfirmButton: false });
+        const Urls = new Array(images.length);
+        const uploadPromises = images.map((image, index) => {
+          const pathName = `images/${image.name + v4()}`;
+          const storageRef = ref(storage, pathName);
+          return uploadBytes(storageRef, image.file)
+            .then(() => getDownloadURL(storageRef))
+            .then((url) => {
+              Urls[index] = { Url: url, path: pathName };
+            });
+        });
+
+        Promise.all(uploadPromises)
+          .then(() => {
+            window.scrollTo(0, 0);
+            Swal.fire({ icon: 'success', text: customMsg })
+            resolve(Urls);
+          })
+          .catch((error) => {
+            // Handle errors from the Promise.all or individual uploads
+            reject(error);
+          });
+      }
+    });
+  }
+
+  const handleUpload = e => {
+    e.preventDefault()
+    if ((product.name === '') || (product.name === undefined)) {
+      Swal.fire({ icon: 'error', title: 'Name is missing' })
+      return
+    } else if ((product.brand === '') || (product.brand === undefined)) {
+      Swal.fire({ icon: 'error', title: 'Brand is missing' })
+      return
+    } else if ((product.price === '') || (product.price === undefined)) {
+      Swal.fire({ icon: 'error', title: 'Price is missing' })
+      return
+    } else if ((product.category === '') || (product.category === undefined)) {
+      Swal.fire({ icon: 'error', title: 'Category is missing' })
+      return
+    }
+    const customMsg = product.name + ' Uploaded';
+    uploadImages(customMsg)
+      .then((res) => {
+        setDoc((newDocProducto), { id: newDocProducto.id, info: product, images: res })
+          .then(() => {
+            setProduct({ name: '', brand: '', price: '', category: '', })
+            setImages([])
+          })
+      })
+  }
+
+
 
   const redirectNotice = () => {
     Swal.fire({
@@ -20,15 +100,15 @@ const Upload = () => {
       cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.isConfirmed) {
+        window.scrollTo(0, 0);
         navigate('/admin/upload/category');
       }
     });
   }
-
   const noCategoriesNotice = () => {
     Swal.fire({
       title: 'No categories created',
-      text: 'You need to create at least ONE category to upload a product',
+      text: 'You need to create at least ONE category to upload a product, press confirm to redirect',
       icon: 'error'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -36,6 +116,46 @@ const Upload = () => {
       }
     });
   }
+  function readmultifiles(e, indexInicial) {
+    const files = e.currentTarget.files
+    const arrayImages = []
+    Object.keys(files).forEach((i) => {
+      const file = files[i]
+      let url = URL.createObjectURL(file);
+      arrayImages.push({
+        index: indexInicial,
+        name: file.name,
+        url,
+        file
+      })
+      indexInicial++
+    })
+    return arrayImages
+  }
+  function deleteImg(index) {
+    const newImgs = images.filter(function (element) {
+      return element.index !== index
+    })
+    setImages(newImgs)
+  }
+
+  const changeInput = (e) => {
+    let indexImg;
+    if (images.length > 0) {
+      indexImg = images[images.length - 1].index + 1;
+    } else {
+      indexImg = 0;
+    }
+    if (images.length >= 5) {
+      alert('Only 5 permitted, delete one to proceed')
+    } else {
+      let newImgsToState = readmultifiles(e, indexImg);
+      let newImgsState = [...images, ...newImgsToState];
+      setImages(newImgsState);
+    }
+
+
+  };
 
 
 
@@ -56,19 +176,24 @@ const Upload = () => {
 
   return (
     <div className='flex flex-col place-items-center gap-y-10 py-5'>
-      {console.log(loading)}
+      <NavLink className='fixed left-5' to="/Admin">Go back</NavLink>
       <h1 className='border-b-4 border-green-400 text-5xl'>New Product</h1>
-      <form className='flex flex-col w-[70%] place-items-center text-xl'>
+      <form onSubmit={handleUpload} className='flex flex-col w-[80%] place-items-center text-xl'>
+        {/* Name */}
         <label>Name</label>
-        <input className='border rounded-xl w-[40%]' type='text' required />
+        <input className='border rounded-xl w-[40%]' onChange={handleInput} value={product.name} name='name' type='text' required />
+        {/* Brand */}
         <label>Brand</label>
-        <input className='border rounded-xl w-[40%]' type='text' required />
+        <input className='border rounded-xl w-[40%]' onChange={handleInput} value={product.brand} name='brand' type='text' required />
+        {/* Price */}
         <label >Price</label>
-        <input className='border rounded-xl w-[40%]' type='number' required />
+        <input className='border rounded-xl w-[40%]' onChange={handleInput} value={product.price} name='price' type='number' required />
         <div className='flex flex-col w-[40%]'>
+          {/* Category */}
           <label className='m-auto'>Category</label>
           <div className='flex place-content-between w-full my-7 gap-y-2 font-bold'>
-            <select className='text-center w-[75%]'>
+            <select className='text-center w-[75%]' onChange={handleInput} value={product.category} name='category' >
+              <option value="">Select</option>
               {(categories && pass) &&
                 categories.map((category, index) => {
                   return (
@@ -77,9 +202,26 @@ const Upload = () => {
                 })
               }
             </select>
+            {/* Redirect to New Category */}
             <div onClick={redirectNotice} className='flex h-16 w-16 border bg-green-500 ml-1 cursor-pointer rounded-full' >
               <span className='m-auto font-2xl font-bold text-white'>New</span>
             </div>
+          </div>
+        </div>
+        {/* Images */}
+        <label className='text-2xl font-bold'>Images (1-5)</label>
+        <div className=' flex flex-col place-items-center border border-teal-500 p-20 w-[75%]'>
+          <input className='border' type="file" onChange={changeInput} />
+          <div className='flex flex-row flex-wrap place-content-center gap-x-5 gap-y-7 p-5'>
+            {images.map((image) => {
+              return (
+                <div className='relative w-fit h-fit' key={image.index}>
+                  <img className='h-32 w-32' src={image.url} alt='owo' />
+                  <button className='absolute left-1/2 transform -translate-x-1/2 -bottom-3 bg-red-500' onClick={deleteImg.bind(this, image.index)}>DELETE</button>
+                  <span className='absolute bg-green-700 p-1 -top-2 -right-2'>{image.index + 1}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
 

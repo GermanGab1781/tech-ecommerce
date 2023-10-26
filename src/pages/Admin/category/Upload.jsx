@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { doc, setDoc, collection } from 'firebase/firestore';
 import { db } from "../../../firebase";
 import Swal from 'sweetalert2';
+import { NavLink } from 'react-router-dom';
 
 const Upload = () => {
 
@@ -33,6 +34,7 @@ const Upload = () => {
 
   return (
     <div className='flex flex-col place-items-center py-5 gap-y-10'>
+      <NavLink className='fixed left-5' to="/Admin">Go back</NavLink>
       <h1 className='border-b-4 border-green-400 text-5xl'>New Category</h1>
       <form className='flex flex-col w-[70%] place-items-center gap-y-2' onSubmit={handleAdd}>
         <label className='text-xl'>Name</label>
