@@ -10,6 +10,8 @@ import Admin from '../pages/Admin/Admin';
 import Login from '../pages/Admin/Login';
 import PrivateRoute from './PrivateRoute';
 import AlreadyLogin from './AlreadyLogin';
+/* home */
+import HomeImgs from '../pages/Admin/home/Home';
 /* product */
 import UploadProduct from '../pages/Admin/product/Upload';
 import EditProduct from '../pages/Admin/product/Edit';
@@ -18,6 +20,8 @@ import ViewProducts from '../pages/Admin/product/View';
 import UploadCategory from '../pages/Admin/category/Upload';
 import EditCategory from '../pages/Admin/category/Edit';
 import ViewCategories from '../pages/Admin/category/View';
+import Latest from '../pages/Admin/home/Latest';
+import Carousel from '../pages/Admin/home/Carousel';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -29,6 +33,10 @@ const AnimatedRoutes = () => {
         {/* Admin */}
         <Route path='/admin/login' element={<AlreadyLogin><Login /></AlreadyLogin>} />
         <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
+        {/* home */}
+        <Route path='/admin/home' element={<PrivateRoute><HomeImgs /></PrivateRoute>} />
+        <Route path='/admin/home/latest' element={<PrivateRoute><Latest /></PrivateRoute>} />
+        <Route path='/admin/home/carousel' element={<PrivateRoute><Carousel /></PrivateRoute>} />
         {/* product */}
         <Route path='/admin/upload/product' element={<PrivateRoute><UploadProduct /></PrivateRoute>} />
         <Route path='/admin/view/product' element={<PrivateRoute><ViewProducts /></PrivateRoute>} />

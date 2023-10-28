@@ -6,14 +6,8 @@ import ItemProduct from '../../../components/Admin/ItemProduct';
 import Swal from 'sweetalert2';
 import { deleteObject, ref } from 'firebase/storage';
 
-
-
-
-
 const View = () => {
   const [products, setProducts] = useState(undefined)
-
-
 
   useEffect(() => {
     const getAllDocs = async () => {
@@ -54,10 +48,10 @@ const View = () => {
     <div>
       <NavLink className='fixed left-5' to="/Admin">Go back</NavLink>
       {products
-        ? <div className='flex gap-10 place-content-center'>
+        ? <div className='flex flex-wrap py-10 gap-10 place-content-center'>
           {products.map((item, index) => {
             return (
-              <ItemProduct key={index} info={item.data()} del={() => { deleteDocument(item.data().id, item.data().images, item.data().info.name) }} />
+              <ItemProduct key={index} info={item} del={() => { deleteDocument(item.data().id, item.data().images, item.data().info.name) }} />
             )
           })}
         </div>

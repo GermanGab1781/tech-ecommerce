@@ -25,6 +25,8 @@ const Admin = () => {
         <NavLink className='border w-1/4 border-black p-5 hover:bg-black hover:text-white' to="/admin/view/category">
           View/Edit/Delete</NavLink>
       </div>
+      <NavLink className='border w-[77%] m-auto border-black p-5 hover:bg-black hover:text-white' to="/admin/home">
+        Home page changes</NavLink>
 
       <span className='cursor-pointer border border-black m-auto p-3 hover:bg-red-600'
         onClick={() => { signOut(auth); Swal.fire({ icon: 'info', title: 'Sesion terminada' }) }}>

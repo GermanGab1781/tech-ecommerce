@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, serverTimestamp } from 'firebase/firestore'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useState, useEffect } from 'react'
 import { db, storage } from '../../../firebase'
@@ -50,7 +50,6 @@ const Upload = () => {
 
         Promise.all(uploadPromises)
           .then(() => {
-            window.scrollTo(0, 0);
             Swal.fire({ icon: 'success', text: customMsg })
             resolve(Urls);
           })
@@ -80,7 +79,7 @@ const Upload = () => {
     const customMsg = product.name + ' Uploaded';
     uploadImages(customMsg)
       .then((res) => {
-        setDoc((newDocProducto), { id: newDocProducto.id, info: product, images: res })
+        setDoc((newDocProducto), { id: newDocProducto.id, info: product, images: res, timestamp: serverTimestamp() })
           .then(() => {
             setProduct({ name: '', brand: '', price: '', category: '', })
             setImages([])
@@ -100,7 +99,6 @@ const Upload = () => {
       cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.isConfirmed) {
-        window.scrollTo(0, 0);
         navigate('/admin/upload/category');
       }
     });
