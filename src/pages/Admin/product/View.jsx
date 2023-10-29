@@ -14,6 +14,7 @@ const View = () => {
       const q = collection(db, "/products/ProductsInfo/All")
       const data = await getDocs(q)
       setProducts(data.docs)
+      console.log(data.docs)
     }
     getAllDocs()
   }, [])

@@ -213,7 +213,7 @@ const Edit = () => {
         ? <div>
           {product.info.name}
           <div className='flex flex-col place-items-center gap-y-10 py-5'>
-            <h1 className='border-b-4 border-green-400 text-5xl'>New Product</h1>
+            <h1 className='border-b-4 border-green-400 text-5xl'>Edit Product</h1>
             <form onSubmit={handleUpdate} className='flex flex-col w-[80%] place-items-center text-xl'>
               {/* Name */}
               <label>Name</label>
