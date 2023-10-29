@@ -37,8 +37,8 @@ const Home = () => {
   }
 
   /* Refs for viewport animations */
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const refLatest = useRef(null);
+  const isInView = useInView(refLatest);
 
   /* Slides */
   function FirstSlide() {
@@ -49,7 +49,7 @@ const Home = () => {
       </motion.div>
       {/* col 2 */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.5 }} className='relative flex flex-col gap-y-6 justify-center items-center border h-[80vh]'>
-        <div >
+        <div>
           Featured Gadget
         </div>
         <div >
@@ -77,27 +77,24 @@ const Home = () => {
           < ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={''} />
           <a href='#latestUpload' className='border text-center mb-20'>Checkmore</a>
           {/* Latest products */}
-          <div ref={ref} id='latestUpload' className='min-h-[80vh] grid grid-cols-3 pt-16'>
+          <div ref={refLatest} id='latestUpload' className='min-h-[80vh] grid grid-cols-3 pt-16'>
             {/* Col 1 */}
             <motion.div className='grid grid-rows-2 grid-cols-3 col-span-2 border'>
-              {products &&
-                products.map((product, index) => {
-                  return (
-                    <motion.div
-                      animate={isInView ? "view" : "noView"}
-                      variants={variantsLatest}
-                      transition={{ duration: 0.5, delay: index / 10 }}
-                      className='h-fit w-fit'
-                      key={index}
-                    >
-                      <Item info={product.data()} />
-                    </motion.div>
-                  )
-                })}
+              {products.map((product, index) => {
+                return (
+                  <motion.div
+
+                    className='h-fit w-fit'
+                    key={index}
+                  >
+                    <Item info={product.data()} />
+                  </motion.div>
+                )
+              })}
             </motion.div>
             {/* Col 2 */}
             <motion.div className='flex border group cursor-pointer col-span-1 h-full w-full justify-center' >
-              <motion.div animate={isInView ? { opacity: 1 } : { opacity: 0 }} transition={{ duration: 1 }} className='relative h-[90%] w-[90%] border m-auto bg-red-900'>
+              <motion.div className='relative h-[90%] w-[90%] border m-auto bg-red-900'>
                 <img className='h-full w-full' src={latestPromo.image.Url} />
                 <NavLink to="catalog" className='absolute -bottom-9 bg-slate-400 p-10 group-hover:bottom-[10%] opacity-0 group-hover:opacity-100 left-1/2 transform -translate-x-1/2 transition-all duration-500'>
                   {latestPromo.title}
