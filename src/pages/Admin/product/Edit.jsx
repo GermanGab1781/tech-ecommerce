@@ -41,7 +41,6 @@ const Edit = () => {
     getProductDoc()
   }, [params])
 
-
   const handleInput = e => {
     const id = e.target.name
     const value = e.target.value

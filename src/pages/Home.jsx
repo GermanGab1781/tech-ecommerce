@@ -10,6 +10,9 @@ const Home = () => {
   const [products, setProducts] = useState(undefined);
   const [firstSlide, setFirstSlide] = useState(undefined);
   const [latestPromo, setLatestPromo] = useState(undefined);
+  /* Refs for viewport animations */
+  const refLatest = useRef(null);
+  const isInView = useInView(refLatest);
 
   useEffect(() => {
     const getAllDocs = async () => {
@@ -36,12 +39,8 @@ const Home = () => {
     noView: { y: -300, x: -300, scale: 0.5, opacity: 0 }
   }
 
-  /* Refs for viewport animations */
-  const refLatest = useRef(null);
-  const isInView = useInView(refLatest);
-
   /* Slides */
-  function FirstSlide() {
+  const FirstSlide = () => {
     return <motion.div className='bg-red-700 relative w-full h-[80vh] cursor-default grid grid-cols-2' >
       {/* col 1 */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.5 }} className='relative flex border h-[80vh]'>
@@ -60,6 +59,7 @@ const Home = () => {
           READ MORE
         </div>
       </motion.div>
+
     </motion.div>
   }
   function SecondSlide() {
@@ -70,20 +70,25 @@ const Home = () => {
     { renderItem: SecondSlide }
   ]
   return (
-    <motion.div className='grid gap-y-10 border'>
-      {(firstSlide && products && latestPromo)
-        ? <>
-          {/* Slider */}
-          < ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={''} />
-          <a href='#latestUpload' className='border text-center mb-20'>Checkmore</a>
-          {/* Latest products */}
-          <div ref={refLatest} id='latestUpload' className='min-h-[80vh] grid grid-cols-3 pt-16'>
-            {/* Col 1 */}
-            <motion.div className='grid grid-rows-2 grid-cols-3 col-span-2 border'>
-              {products.map((product, index) => {
+    <motion.div className='p-5 '>
+      <motion.div>
+        {/* Carousel */}
+        {firstSlide
+          ? < ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={''} />
+          : <div className='bg-red-700 relative w-full h-[80vh] cursor-default'>Loading</div>
+        }
+
+        {/* Latest products */}
+        <motion.div ref={refLatest} className='min-h-[80vh] grid grid-cols-3 mt-36 border border-red-900'>
+          {/* Col 1 */}
+          <motion.div className='grid grid-rows-2 grid-cols-3 col-span-2 border overflow-hidden'>
+            {products &&
+              products.map((product, index) => {
                 return (
                   <motion.div
-
+                    animate={isInView ? "view" : "noView"}
+                    variants={variantsLatest}
+                    transition={{ duration: 0.5, delay: index / 10 }}
                     className='h-fit w-fit'
                     key={index}
                   >
@@ -91,20 +96,20 @@ const Home = () => {
                   </motion.div>
                 )
               })}
-            </motion.div>
-            {/* Col 2 */}
-            <motion.div className='flex border group cursor-pointer col-span-1 h-full w-full justify-center' >
-              <motion.div className='relative h-[90%] w-[90%] border m-auto bg-red-900'>
-                <img className='h-full w-full' src={latestPromo.image.Url} />
+          </motion.div>
+          {/* Col 2 */}
+          <motion.div className='flex border group cursor-pointer col-span-1 h-full w-full justify-center' >
+            {latestPromo &&
+              <motion.div animate={isInView ? { opacity: 1 } : { opacity: 0 }} transition={{ duration: 1 }} className='relative h-[90%] w-[90%] border m-auto bg-red-900'>
+                <img className='h-full w-full' src={latestPromo.image.Url} alt='promoImage' />
                 <NavLink to="catalog" className='absolute -bottom-9 bg-slate-400 p-10 group-hover:bottom-[10%] opacity-0 group-hover:opacity-100 left-1/2 transform -translate-x-1/2 transition-all duration-500'>
                   {latestPromo.title}
                 </NavLink>
               </motion.div>
-            </motion.div>
-          </div>
-        </>
-        : <motion.div>Loading</motion.div>
-      }
+            }
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 }

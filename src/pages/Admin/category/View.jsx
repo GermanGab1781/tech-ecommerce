@@ -22,11 +22,10 @@ const View = () => {
       <NavLink className='fixed left-5' to="/Admin">Go back</NavLink>
       {categories
         ?
-        <motion.div className='flex flex-col place-items-center'>
-          {console.log(categories)}
+        <motion.div className='flex flex-wrap w-1/2 m-auto gap-10 border place-content-center'>
           {categories.map((category, index) => {
             return (
-              <Item key={index} name={category.data().name} />
+              <Item key={index} info={category.data()} id={category.id} />
             )
           })}
         </motion.div>
