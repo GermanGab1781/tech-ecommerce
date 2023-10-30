@@ -14,18 +14,19 @@ const Login = () => {
     const id = e.target.id
     const value = e.target.value
     setUserLogin({ ...userLogin, [id]: value })
+    console.log(userLogin)
   }
 
   const handleSignIn = e => {
     e.preventDefault()
     if (userLogin === undefined) {
-      Swal.fire({ icon: 'error', title: 'Llenar los campos :P' })
+      Swal.fire({ icon: 'error', title: 'Write email and password :P' })
       return
     } else if (userLogin.email === undefined) {
-      Swal.fire({ icon: 'error', title: 'Falta Email' })
+      Swal.fire({ icon: 'error', title: 'Missing email' })
       return
     } else if (userLogin.password === undefined) {
-      Swal.fire({ icon: 'error', title: 'Falta Contraseña' })
+      Swal.fire({ icon: 'error', title: 'Missing password' })
       return
     }
 
@@ -34,7 +35,7 @@ const Login = () => {
         Swal.fire({ icon: 'success', title: 'Logueo Exitoso' })
       })
       .catch((err) => {
-        Swal.fire(err)
+        Swal.fire({ icon: 'error', title: err })
       })
   }
 
@@ -43,11 +44,11 @@ const Login = () => {
       <form className='border text-center w-[80%] p-10' onSubmit={handleSignIn}>
         <label className=''>Email</label><br />
         <input className='border border-black' type="email" id="email" onChange={handleInput} /><br />
-        <label className=''>Contraseña</label><br />
+        <label className=''>Password</label><br />
         <input className='border border-black' type="password" id="password" onChange={handleInput} /><br />
-        <button className='border p-3 hover:bg-green-600'>Loguearse</button>
-        <div>usuario:  admin@test.com</div>
-        <div>contraseña:  admintest</div>
+        <button className='border p-3 hover:bg-green-600'>Log in</button>
+        <div>user:admin@test.com</div>
+        <div>password:aREALLYhardPassWORD123</div>
       </form>
     </div>
   )
