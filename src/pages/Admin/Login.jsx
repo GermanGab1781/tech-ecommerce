@@ -14,7 +14,6 @@ const Login = () => {
     const id = e.target.id
     const value = e.target.value
     setUserLogin({ ...userLogin, [id]: value })
-    console.log(userLogin)
   }
 
   const handleSignIn = e => {

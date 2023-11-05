@@ -49,7 +49,7 @@ const FirstSlide = () => {
     e.preventDefault()
     if (imageChange) {
       const imgRef = ref(storage, oldPromoImg.path)
-      /* Delete old image and new one */
+      /* Delete old image and add new one */
       deleteObject(imgRef).then(() => {
         uploadImage(promoImg).then((res) => {
           updateDoc((docRef), {
@@ -65,7 +65,13 @@ const FirstSlide = () => {
 
     } else {
       updateDoc((docRef), {
-        first: featured
+        first: {
+          idFeatured: featured,
+          imgPromo: {
+            Url: promoImg.Url,
+            path: promoImg.path
+          }
+        }
       }).then(() => {
         Swal.fire({ icon: 'success', title: 'First Slide updated', text: 'check homepage' })
 

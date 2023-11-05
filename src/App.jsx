@@ -11,7 +11,7 @@ function App() {
       <AuthContextProvider>
         <BrowserRouter>
           <Navbar />
-          <div className='min-h-screen py-16 bg-gray-300'><AnimatedRoutes /></div>
+          <div className='min-h-screen bg-white py-16'><AnimatedRoutes /></div>
           <Footer />
         </BrowserRouter>
       </AuthContextProvider>
