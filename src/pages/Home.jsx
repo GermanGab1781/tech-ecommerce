@@ -8,12 +8,19 @@ import { NavLink } from 'react-router-dom';
 import ItemHome from '../components/ItemHome';
 import ItemCategHome from '../components/ItemCategHome';
 const Home = () => {
+  /* Products */
   const [products, setProducts] = useState(undefined);
+  /* Carousel */
   const [firstSlide, setFirstSlide] = useState(undefined);
   const [latestPromo, setLatestPromo] = useState(undefined);
+  /* Categories */
   const [categories, setCategories] = useState(undefined);
   const [categPreview, setCategPreview] = useState(undefined);
   const initialCategPreview = {};
+  /* Brands */
+  const [brands, setBrands] = useState(undefined);
+  const [brandsPreview, setBrandsPreview] = useState(undefined);
+  const initialBrandsPreview = {};
 
   useEffect(() => {
     const getAllDocs = async () => {
@@ -28,10 +35,18 @@ const Home = () => {
       })
       dataProducts.docs.forEach(product => {
         if (initialCategPreview[product.data().info.category].length < 4) {
-          initialCategPreview[product.data().info.category].push(product.data().images[0])
+          initialCategPreview[product.data().info.category].push(product.data().images[0].Url)
+        }
+        if (!initialBrandsPreview[product.data().info.brand]) {
+          initialBrandsPreview[product.data().info.brand] = [product.data().images[0].Url]
+        } else if (initialBrandsPreview[product.data().info.brand].length < 4) {
+          initialBrandsPreview[product.data().info.brand].push(product.data().images[0].Url)
         }
       })
-      setCategPreview(initialCategPreview)
+      const initialBrands = new Set(dataProducts.docs.map(p => p.data().info.brand))
+      setBrands(Array.from(initialBrands))
+      setBrandsPreview(initialBrandsPreview);
+      setCategPreview(initialCategPreview);
       setLatestPromo(dataLatest.data());
       setFirstSlide({ featured: dataProducts.docs.find(item => item.data().id === dataSlide.data().first.idFeatured).data(), imgPromo: dataSlide.data().first.imgPromo });
     }
@@ -44,16 +59,16 @@ const Home = () => {
   /* Slides */
   const FirstSlide = () => {
     return <NavLink to="/catalog">
-      <div className='relative h-[50vh]'>
-        <img src={firstSlide.imgPromo.Url} className='bg-contain h-[50vh] w-full' alt='imgPromo' />
+      <div className='relative h-[65vh]'>
+        <img src={firstSlide.imgPromo.Url} className='bg-contain h-[65vh] w-full' alt='imgPromo' />
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white via-transparent to-transparent"></div>
       </div>
     </NavLink>
   }
   const SecondSlide = () => {
     return <NavLink to="/catalog">
-      <div className='relative h-[50vh]'>
-        <img src={firstSlide.imgPromo.Url} className='bg-contain h-[50vh] w-full' alt='imgPromo' />
+      <div className='relative h-[65vh]'>
+        <img src={firstSlide.imgPromo.Url} className='bg-contain h-[65vh] w-full' alt='imgPromo' />
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white via-transparent to-transparent"></div>
       </div>
     </NavLink>
@@ -67,7 +82,7 @@ const Home = () => {
     <motion.div className='relative min-h-screen mb-60'>
       {/* Carousel */}
       {firstSlide
-        ? <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={5000} autoPlay={true} additionalClass={''} />
+        ? <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={true} additionalClass={''} />
         : <div className='bg-transparent relative w-full h-screen cursor-default'>Loading</div>
       }
 
@@ -94,9 +109,9 @@ const Home = () => {
         </div>
         {/* Categories */}
         <div>
-          <h1 className='text-center text-4xl mb-2'>Browse our products</h1>
+          <h1 className='text-center text-4xl mb-2'>Categories</h1>
           <motion.div className='relative flex gap-2 flex-wrap place-content-center '>
-            {categories &&
+            {(categories && categPreview) &&
               categories.map((categ, index) => {
                 return (
                   <ItemCategHome key={index} name={categ.data().name} preview={categPreview[categ.data().name]} />
@@ -106,6 +121,18 @@ const Home = () => {
           </motion.div>
         </div>
         {/* Brands */}
+        <div>
+          <h1 className='text-center text-4xl mb-2'>Brands</h1>
+          <motion.div className='relative flex gap-2 flex-wrap place-content-center '>
+            {(brands && brandsPreview) &&
+              brands.map((brand, index) => {
+                return (
+                  <ItemCategHome key={index} name={brand} preview={brandsPreview[brand]} />
+                )
+              })
+            }
+          </motion.div>
+        </div>
       </motion.div>
 
 

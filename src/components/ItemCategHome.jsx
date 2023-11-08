@@ -8,7 +8,7 @@ const ItemCategHome = ({ name, preview }) => {
       <div className='relative grid grid-cols-2 gap-0 p-2 h-[90%] w-[90%]'>
         {preview.map((product, index) => {
           return (
-            <img className='border p-2 bg-slate-100 h-[8vw] w-[8vw]' key={index} src={product.Url} />
+            <img className='border p-2 bg-slate-100 h-[8vw] w-[8vw]' key={index} src={product} />
           )
         })}
       </div>
