@@ -7,12 +7,12 @@ export default function Navbar() {
   return (
     <motion.div className="fixed flex z-40 bg-slate-200 w-screen h-16 place-content-between">
       {/* Brand */}
-      <NavLink className="my-auto" to="/"><span className="text-3xl border border-red-900">GogoGadget</span></NavLink>
+      <NavLink className="my-auto" to="/"><span className="text-3xl">GogoGadget</span></NavLink>
       {/* Nav Items */}
-      <div className='flex gap-x-5 border border-red-900 my-auto'>
-        <NavLink className="text-black transition-all delay-75 border border-red-900" to="/Catalog">Catalog</NavLink>
-        <NavLink className="text-black transition-all delay-75 border border-red-900" to="/">About us</NavLink>
-        <NavLink className="hover:text-slate-50  transition-all delay-75 border border-red-900" to="/admin/login">Log in</NavLink>
+      <div className='flex gap-x-3 my-auto mr-7'>
+        <NavLink className="text-black transition-all delay-75" to="/Catalog">Catalog</NavLink>
+        <NavLink className="text-black transition-all delay-75" to="/Cart">Cart</NavLink>
+        <NavLink className="hover:text-slate-50  transition-all delay-75" to="/admin/login">Log in</NavLink>
       </div>
     </motion.div>
   )

@@ -14,7 +14,6 @@ const Edit = () => {
   const [newImages, setNewImages] = useState([])
   const [categories, setCategories] = useState(undefined)
   const [pass, setPass] = useState(false)
-  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const params = useParams()

@@ -6,7 +6,7 @@ import { collection, query, orderBy, limit, getDocs, getDoc, doc } from 'firebas
 import { db } from '../firebase';
 import { NavLink } from 'react-router-dom';
 import ItemHome from '../components/ItemHome';
-import ItemCategHome from '../components/ItemCategHome';
+import ItemPreviewHome from '../components/ItemPreviewHome';
 const Home = () => {
   /* Products */
   const [products, setProducts] = useState(undefined);
@@ -80,10 +80,13 @@ const Home = () => {
   ]
   return (
     <motion.div className='relative min-h-screen mb-60'>
+
       {/* Carousel */}
       {firstSlide
         ? <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={true} additionalClass={''} />
-        : <div className='bg-transparent relative w-full h-screen cursor-default'>Loading</div>
+        : <div className='relative bg-transparent w-full h-[65vh] text-4xl text-center animate-pulse border'>
+          <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2'>Loading</span>
+        </div>
       }
 
       <motion.div className='bg-transparent relative top-[30vh] '>
@@ -114,7 +117,7 @@ const Home = () => {
             {(categories && categPreview) &&
               categories.map((categ, index) => {
                 return (
-                  <ItemCategHome key={index} name={categ.data().name} preview={categPreview[categ.data().name]} />
+                  <ItemPreviewHome key={index} name={categ.data().name} preview={categPreview[categ.data().name]} />
                 )
               })
             }
@@ -127,26 +130,13 @@ const Home = () => {
             {(brands && brandsPreview) &&
               brands.map((brand, index) => {
                 return (
-                  <ItemCategHome key={index} name={brand} preview={brandsPreview[brand]} />
+                  <ItemPreviewHome key={index} name={brand} preview={brandsPreview[brand]} />
                 )
               })
             }
           </motion.div>
         </div>
       </motion.div>
-
-
-
-      {/* <motion.div className='h-36' >
-        {latestPromo &&
-          <motion.div transition={{ duration: 1 }} className='relative h-[90%] w-[90%]  m-auto bg-red-900'>
-            <img className='h-full w-full' src={latestPromo.image.Url} alt='promoImage' />
-            <NavLink to="catalog" className='absolute -bottom-9 bg-slate-400 p-10 group-hover:bottom-[10%] opacity-0 group-hover:opacity-100 left-1/2 transform -translate-x-1/2 transition-all duration-500'>
-              {latestPromo.title}
-            </NavLink>
-          </motion.div>
-        }
-      </motion.div> */}
     </motion.div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const ItemCategHome = ({ name, preview }) => {
+const ItemPreviewHome = ({ name, preview }) => {
   return (
     <NavLink to={"/catalog/" + name} className='flex flex-col relative group h-[20vw] w-[20vw] border cursor-pointer place-items-center bg-white text-center'>
       <span className='text-xl'>{name}</span>
@@ -19,4 +19,4 @@ const ItemCategHome = ({ name, preview }) => {
   );
 }
 
-export default ItemCategHome;
+export default ItemPreviewHome;
