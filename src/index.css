@@ -8,7 +8,7 @@ html {
   scroll-behavior: smooth
 }
 
-.image-gallery {
+.image-galleryHome {
   position: absolute;
   top: 0;
   left: 0;
@@ -20,12 +20,12 @@ html {
 }
 
 
-.image-gallery .image-gallery-right-nav {
+.image-galleryHome .image-gallery-right-nav {
   position: absolute;
   top: 20%;
 }
 
-.image-gallery .image-gallery-left-nav {
+.image-galleryHome .image-gallery-left-nav {
   position: absolute;
   top: 20%;
 }

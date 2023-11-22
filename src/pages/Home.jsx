@@ -83,7 +83,7 @@ const Home = () => {
 
       {/* Carousel */}
       {firstSlide
-        ? <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={true} additionalClass={''} />
+        ? <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={true} additionalClass={'image-galleryHome'} />
         : <div className='relative bg-transparent w-full h-[65vh] text-4xl text-center animate-pulse border'>
           <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2'>Loading</span>
         </div>
@@ -117,7 +117,7 @@ const Home = () => {
             {(categories && categPreview) &&
               categories.map((categ, index) => {
                 return (
-                  <ItemPreviewHome key={index} name={categ.data().name} preview={categPreview[categ.data().name]} />
+                  <ItemPreviewHome key={index} type={"category"} name={categ.data().name} preview={categPreview[categ.data().name]} />
                 )
               })
             }
@@ -130,7 +130,7 @@ const Home = () => {
             {(brands && brandsPreview) &&
               brands.map((brand, index) => {
                 return (
-                  <ItemPreviewHome key={index} name={brand} preview={brandsPreview[brand]} />
+                  <ItemPreviewHome key={index} type={"brand"} name={brand} preview={brandsPreview[brand]} />
                 )
               })
             }

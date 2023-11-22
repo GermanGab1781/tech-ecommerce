@@ -12,10 +12,11 @@ const Catalog = () => {
   const [docsCopy, setDocsCopy] = useState(undefined)
   const [categs, setCategs] = useState(undefined)
   const [brands, setBrands] = useState(undefined)
-  const [search, setSearch] = useState(undefined)
+  const [search, setSearch] = useState([undefined])
   const [loading, setLoading] = useState(false);
   const params = useParams()
-  const keyword = params.id
+  const keywordId = params.id
+  const keywordType = params.type
 
   const changeSearch = (newValue, type) => {
     if (search !== newValue) {
@@ -34,9 +35,11 @@ const Catalog = () => {
       setCategs(data2.docs)
       const initialBrands = new Set(dataProducts.docs.map(p => p.data().info.brand))
       setBrands(Array.from(initialBrands))
-
-      if (keyword !== undefined) {
-        setSearch(keyword)
+      if (keywordId !== undefined && keywordType !== undefined) {
+        let searchKeys = []
+        searchKeys.push(keywordId)
+        searchKeys.push(keywordType)
+        setSearch(searchKeys)
       }
       setLoading(false)
     }

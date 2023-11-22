@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const ItemPreviewHome = ({ name, preview }) => {
+const ItemPreviewHome = ({ name, preview, type }) => {
   return (
-    <NavLink to={"/catalog/" + name} className='flex flex-col relative group h-[20vw] w-[20vw] border cursor-pointer place-items-center bg-white text-center'>
+    <NavLink to={"/catalog/" + type + "/" + name} className='flex flex-col relative group h-[20vw] w-[20vw] border cursor-pointer place-items-center bg-white text-center'>
       <span className='text-xl'>{name}</span>
       <div className='relative grid grid-cols-2 gap-0 p-2 h-[90%] w-[90%]'>
         {preview.map((product, index) => {

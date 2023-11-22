@@ -25,6 +25,7 @@ import Carousel from '../pages/Admin/home/Carousel';
 import FirstSlide from '../pages/Admin/home/firstSlide';
 import SecondSlide from '../pages/Admin/home/secondSlide';
 import ThirdSlide from '../pages/Admin/home/thirdSlide';
+import ProductDetail from '../pages/ProductDetail';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -32,9 +33,11 @@ const AnimatedRoutes = () => {
     <AnimatePresence location={location} key={location.pathname}>
       <Routes>
         <Route path='/' element={<Home />} />
+        {/* Product Detail */}
+        <Route path='/product/:id' element={<ProductDetail />} />
         {/* Catalog */}
         <Route path='/catalog' element={<Catalog />} />
-        <Route path='/catalog/:id' element={<Catalog />} />
+        <Route path='/catalog/:type/:id' element={<Catalog />} />
         {/* Admin */}
         <Route path='/admin/login' element={<AlreadyLogin><Login /></AlreadyLogin>} />
         <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
