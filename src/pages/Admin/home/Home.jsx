@@ -7,7 +7,7 @@ const Home = () => {
       <NavLink className='fixed left-5 top-[15%]' to="/Admin">Go back</NavLink>
       <h1 className='text-4xl font-bold'>Home page changes</h1>
       <NavLink className='border w-full m-auto border-black p-5 hover:bg-black hover:text-white' to="/admin/home/carousel">
-        Carousel</NavLink>
+        Background Images</NavLink>
       <NavLink className='border w-full m-auto border-black p-5 hover:bg-black hover:text-white' to="/admin/home/latest">
         "Latest" section</NavLink>
     </div>

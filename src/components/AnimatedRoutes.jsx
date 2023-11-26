@@ -22,9 +22,6 @@ import EditCategory from '../pages/Admin/category/Edit';
 import ViewCategories from '../pages/Admin/category/View';
 import Latest from '../pages/Admin/home/Latest';
 import Carousel from '../pages/Admin/home/Carousel';
-import FirstSlide from '../pages/Admin/home/firstSlide';
-import SecondSlide from '../pages/Admin/home/secondSlide';
-import ThirdSlide from '../pages/Admin/home/thirdSlide';
 import ProductDetail from '../pages/ProductDetail';
 
 const AnimatedRoutes = () => {
@@ -45,9 +42,6 @@ const AnimatedRoutes = () => {
         <Route path='/admin/home' element={<PrivateRoute><HomeImgs /></PrivateRoute>} />
         <Route path='/admin/home/latest' element={<PrivateRoute><Latest /></PrivateRoute>} />
         <Route path='/admin/home/carousel' element={<PrivateRoute><Carousel /></PrivateRoute>} />
-        <Route path='/admin/home/carousel/firstSlide' element={<PrivateRoute><FirstSlide /></PrivateRoute>} />
-        <Route path='/admin/home/carousel/secondSlide' element={<PrivateRoute><SecondSlide /></PrivateRoute>} />
-        <Route path='/admin/home/carousel/thirdSlide' element={<PrivateRoute><ThirdSlide /></PrivateRoute>} />
         {/* product */}
         <Route path='/admin/upload/product' element={<PrivateRoute><UploadProduct /></PrivateRoute>} />
         <Route path='/admin/view/product' element={<PrivateRoute><ViewProducts /></PrivateRoute>} />

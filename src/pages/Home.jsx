@@ -11,7 +11,8 @@ const Home = () => {
   /* Products */
   const [products, setProducts] = useState(undefined);
   /* Carousel */
-  const [firstSlide, setFirstSlide] = useState(undefined);
+  const [carousel, setCarousel] = useState(undefined);
+  const [slides, setSlides] = useState([])
   const [latestPromo, setLatestPromo] = useState(undefined);
   /* Categories */
   const [categories, setCategories] = useState(undefined);
@@ -27,7 +28,7 @@ const Home = () => {
       const dataCategs = await getDocs(collection(db, "/products/Categories/list"))
       const dataProducts = await getDocs(query(collection(db, "/products/ProductsInfo/All"), orderBy('timestamp', 'asc')));
       const dataLatest = await getDoc(doc(db, "homepage", "latest"));
-      const dataSlide = await getDoc(doc(db, "homepage", "carousel"));
+      const dataCarousel = await getDoc(doc(db, "homepage", "carousel"));
       setCategories(dataCategs.docs)
       setProducts(dataProducts.docs.slice(0, 4));
       dataCategs.docs.forEach(categ => {
@@ -48,7 +49,7 @@ const Home = () => {
       setBrandsPreview(initialBrandsPreview);
       setCategPreview(initialCategPreview);
       setLatestPromo(dataLatest.data());
-      setFirstSlide({ featured: dataProducts.docs.find(item => item.data().id === dataSlide.data().first.idFeatured).data(), imgPromo: dataSlide.data().first.imgPromo });
+      setCarousel(setImagesForCarousel(dataCarousel.data()))
     }
     getAllDocs();
   }, [])
@@ -56,34 +57,36 @@ const Home = () => {
   /* Mobile check */
   const isMobile = useMediaQuery({ query: "(max-width: 800px)" });
 
-  /* Slides */
-  const FirstSlide = () => {
+  /* Slide Component */
+  const Slide = ({ Url }) => {
     return <NavLink to="/catalog">
       <div className='relative h-[65vh]'>
-        <img src={firstSlide.imgPromo.Url} className='bg-contain h-[65vh] w-full' alt='imgPromo' />
-        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-      </div>
-    </NavLink>
-  }
-  const SecondSlide = () => {
-    return <NavLink to="/catalog">
-      <div className='relative h-[65vh]'>
-        <img src={firstSlide.imgPromo.Url} className='bg-contain h-[65vh] w-full' alt='imgPromo' />
+        <img src={Url} className='bg-contain h-[65vh] w-full' alt='Slide Image' />
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white via-transparent to-transparent"></div>
       </div>
     </NavLink>
   }
 
-  const slides = [
-    { renderItem: FirstSlide },
-    { renderItem: SecondSlide }
-  ]
+  function setImagesForCarousel(list) {
+    let result = []
+    if (list.image1.Url !== "") {
+      result.push({ original: list.image1.Url, loading: "lazy", alt: "CarouselImage", originalClass: "h-full border cursor-auto" })
+    }
+    if (list.image2.Url !== "") {
+      result.push({ original: list.image2.Url, loading: "lazy", alt: "CarouselImage", originalClass: "h-full border cursor-auto" })
+    }
+    if (list.image3.Url !== "") {
+      result.push({ original: list.image3.Url, loading: "lazy", alt: "CarouselImage", originalClass: "h-full border cursor-auto" })
+    }
+    return result
+  }
+
+
   return (
     <motion.div className='relative min-h-screen mb-60'>
-
       {/* Carousel */}
-      {firstSlide
-        ? <ReactImageGallery items={slides} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={true} additionalClass={'image-galleryHome'} />
+      {carousel
+        ? <ReactImageGallery items={carousel} showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={'image-galleryHome'} />
         : <div className='relative bg-transparent w-full h-[65vh] text-4xl text-center animate-pulse border'>
           <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2'>Loading</span>
         </div>

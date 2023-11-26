@@ -13,7 +13,7 @@ const ProductDetail = () => {
   function setImagesForCarousel(list) {
     let result = []
     list.forEach((img) => {
-      result.push({ original: img.Url, thumbnail: img.Url, loading: "lazy", alt: "CarouselImage", originalClass: "border h-full max-h-[50vh]" })
+      result.push({ original: img.Url, thumbnail: img.Url, loading: "lazy", alt: "CarouselImage", originalClass: "border h-full max-h-[50vh] " })
     })
     return result
   }
