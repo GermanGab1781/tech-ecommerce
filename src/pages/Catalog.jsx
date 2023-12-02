@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion';
 import SideBar from '../components/Catalog/SideBar';
 import View from '../components/Catalog/View';
-import TopBar from '../components/Catalog/TopBar';
 import { useParams } from 'react-router-dom';
 const Catalog = () => {
   const [docs, setDocs] = useState(undefined)
@@ -13,7 +12,6 @@ const Catalog = () => {
   const [categs, setCategs] = useState(undefined)
   const [brands, setBrands] = useState(undefined)
   const [search, setSearch] = useState([undefined])
-  const [loading, setLoading] = useState(false);
   const params = useParams()
   const keywordId = params.id
   const keywordType = params.type
@@ -41,7 +39,6 @@ const Catalog = () => {
         searchKeys.push(keywordType)
         setSearch(searchKeys)
       }
-      setLoading(false)
     }
     getAllDocs()
   }, [])
@@ -56,23 +53,26 @@ const Catalog = () => {
     }
   }, [search])
 
+  const isDataLoaded = categs && docsCopy;
   return (
-    <div className='relative pt-16 '>
-      {categs &&
-        <div className='flex border border-red-900 min-h-screen relative' >
-          <SideBar categs={categs} brands={brands} search={changeSearch} />
-          <div className='border border-green-500 w-full h-full ml-[20%]'>
-            <TopBar title={search[0]} />
-            {loading
-              ? <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className='border text-3xl text-center pt-16 h-screen animate-pulse'>Loading Products</motion.div>
-              : <View items={docsCopy} />
-            }
+    <div className='relative'>
+      {isDataLoaded ?
+        (
+          <div className='flex min-h-screen relative' >
+            <SideBar categs={categs} brands={brands} search={changeSearch} />
+            <div className=' w-full h-full'>
 
+              <View items={docsCopy} title={search[0]} />
+            </div>
           </div>
-        </div>
-      }
-
-      {(categs === undefined && docsCopy === undefined) && <div className='absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold border'><span>LOADING CATALOG</span></div>}
+        )
+        /* Loading page */
+        :
+        (
+          <div className='relative bg-transparent w-full h-screen text-4xl text-center animate-pulse border'>
+            <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 '>Fine-tuning our digital storefront for an exceptional experience...</span>
+          </div>
+        )}
     </div>
   );
 }
