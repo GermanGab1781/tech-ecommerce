@@ -1,18 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 const Item = ({ info }) => {
   return (
-    <motion.div className='flex flex-col border border-blue-900 m-5 w-48 h-72'>
-      <img src={info.images[0].Url} className='h-[80%] bg-slate-400' />
-      <div className='flex'>
-        <div className='flex flex-col'>
-          <span className='text-xl'>{info.info.name}</span>
+    <NavLink to={"/product/" + info.id} className="group">
+      <motion.div className='flex flex-col border-2 group-hover:scale-105 border-blue-900 m-2 mx-3 w-48 h-72 delay-75'>
+        <img src={info.images[0].Url} className='h-[80%] bg-blue-900 border-b-2 border-black' />
+        <div className='flex flex-col text-center'>
+          <span className='text-xl group-hover:font-bold'>{info.info.name}</span>
+          <span className='text-xl text-green-600'>${info.info.price}</span>
           <span>{info.info.brand}</span>
         </div>
-        <span className='m-auto text-xl text-green-600'>${info.info.price}</span>
-
-      </div>
-    </motion.div>
+      </motion.div >
+    </NavLink>
   );
 }
 

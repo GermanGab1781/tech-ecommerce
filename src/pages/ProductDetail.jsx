@@ -17,6 +17,7 @@ const ProductDetail = () => {
     })
     return result
   }
+  useEffect(() => { window.scroll(0, 1); }, [])
 
   useEffect(() => {
     const getProductDoc = async () => {

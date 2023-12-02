@@ -23,6 +23,7 @@ const Catalog = () => {
       setSearch(undefined)
     }
   }
+  useEffect(() => { window.scroll(0, 1); }, [])
 
   useEffect(() => {
     const getAllDocs = async () => {
@@ -53,6 +54,7 @@ const Catalog = () => {
     }
   }, [search])
 
+
   const isDataLoaded = categs && docsCopy;
   return (
     <div className='relative'>
@@ -61,7 +63,6 @@ const Catalog = () => {
           <div className='flex min-h-screen relative' >
             <SideBar categs={categs} brands={brands} search={changeSearch} />
             <div className=' w-full h-full'>
-
               <View items={docsCopy} title={search[0]} />
             </div>
           </div>
