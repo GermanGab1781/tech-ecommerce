@@ -3,16 +3,20 @@ import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 const Item = ({ info }) => {
   return (
-    <NavLink to={"/product/" + info.id} className="group font-roboto">
-      <motion.div className='flex flex-col border-2 border-blue-900 group-hover:border-green-900 m-2 mx-3 w-48 h-72 delay-75'>
-        <img src={info.images[0].Url} className='h-[80%] bg-blue-900 border-b-2 border-blue-900 group-hover:border-green-900' />
-        <div className='flex flex-col text-center bg-slate-300'>
-          <span className='text-xl group-hover:font-bold'>{info.info.name}</span>
-          <span className='text-xl text-green-600'>${info.info.price}</span>
-          <span>{info.info.brand}</span>
-        </div>
-      </motion.div >
-    </NavLink>
+    <div className='relative group overflow-hidden'>
+      <NavLink to={"/product/" + info.id}>
+        <motion.div className='flex flex-col border-2 border-blue-900 md:m-2 mx-3 w-60 h-72 md:w-96 md:h-96 delay-75'>
+          <img src={info.images[0].Url} className='h-[80%] bg-white border-b-2 border-blue-300' />
+          <div className='flex flex-col text-center bg-slate-300'>
+            <span className='text-2xl md:text-4xl font-dosis'>{info.info.name}</span>
+            <span className='text-xl text-green-600'>${info.info.price}</span>
+            <span>{info.info.brand}</span>
+          </div>
+        </motion.div >
+
+      </NavLink>
+      <span className='absolute border bottom-4 md:-right-96 right-5 group-hover:right-5 p-2'>Add To Cart</span>
+    </div>
   );
 }
 

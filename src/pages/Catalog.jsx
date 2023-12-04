@@ -60,7 +60,7 @@ const Catalog = () => {
     <div className='relative font-raleway font-semibold bg-slate-200'>
       {isDataLoaded ?
         (
-          <div className='flex min-h-screen relative' >
+          <div className='flex md:flex-row flex-col min-h-screen relative' >
             <SideBar categs={categs} brands={brands} search={changeSearch} />
             <div className='w-full h-full min-h-screen'>
               <View items={docsCopy} title={search[0]} />

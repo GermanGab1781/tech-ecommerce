@@ -6,13 +6,11 @@ import Item from './Item';
 
 const View = ({ items, title }) => {
   return (
-    <motion.div key={items}
-      className=''
-    >
-      <motion.div key={title} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className='h-[20%] text-5xl text-center'>
-        {title === undefined ? <span>Our Products</span> : <span>{title}</span>}
+    <motion.div key={items} className=''>
+      <motion.div key={title} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className='h-[20%] text-5xl text-center '>
+        {title === undefined ? <span className=''>Our Products</span> : <span className=''>{title}</span>}
       </motion.div>
-      <div className='flex border-2 border-blue-900 min-h-screen flex-wrap justify-center place-content-start gap-10'>
+      <div className='flex border-2 border-blue-300 border-x-0 border-b-0 min-h-screen flex-wrap justify-center place-content-start gap-10 md:pt-o pt-5'>
         {items.length > 0 ? items.map((item, index) => {
           return (
             <Item key={index} info={item} />
