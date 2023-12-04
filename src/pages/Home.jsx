@@ -19,7 +19,7 @@ const Home = () => {
   const [brandsPreview, setBrandsPreview] = useState(undefined);
 
   useEffect(() => {
-    window.scroll(0, 0)
+    /* window.scroll(0, 0) */
     const initialCategPreview = {};
     const initialBrandsPreview = {};
     const getAllDocs = async () => {
@@ -92,7 +92,7 @@ const Home = () => {
             {/* Categories */}
             <div>
               <h1 className='text-center text-4xl mb-2'>Categories</h1>
-              <motion.div className='relative flex gap-2 flex-wrap place-content-center '>
+              <motion.div className='relative md:w-auto m-auto w-3/4 flex md:flex-row flex-col gap-2 flex-wrap place-content-center'>
                 {categories.map((categ, index) => {
                   return (
                     <span key={index}>
@@ -107,7 +107,7 @@ const Home = () => {
             {/* Brands */}
             <div className='bg-slate-100 pb-10'>
               <h1 className='text-center text-4xl mb-2'>Brands</h1>
-              <motion.div className='relative flex gap-2 flex-wrap place-content-center '>
+              <motion.div className='relative flex gap-2 flex-wrap place-content-center md:w-auto w-3/4 m-auto'>
                 {brands.map((brand, index) => {
                   return (
                     <ItemPreviewHome key={index} type={"brand"} name={brand} preview={brandsPreview[brand]} />
