@@ -57,12 +57,12 @@ const Catalog = () => {
 
   const isDataLoaded = categs && docsCopy;
   return (
-    <div className='relative'>
+    <div className='relative font-raleway font-semibold bg-slate-200'>
       {isDataLoaded ?
         (
           <div className='flex min-h-screen relative' >
             <SideBar categs={categs} brands={brands} search={changeSearch} />
-            <div className=' w-full h-full'>
+            <div className='w-full h-full min-h-screen'>
               <View items={docsCopy} title={search[0]} />
             </div>
           </div>

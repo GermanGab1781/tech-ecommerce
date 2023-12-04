@@ -58,7 +58,7 @@ const Home = () => {
   /* const isMobile = useMediaQuery({ query: "(max-width: 800px)" }); */
 
   return (
-    <div>
+    <div className='font-roboto font-medium'>
       {isDataLoaded ? (
         <motion.div className='relative min-h-screen mb-60 bg-slate-100'>
           {/* Carousel */}
@@ -91,7 +91,7 @@ const Home = () => {
             </div>
             {/* Categories */}
             <div>
-              <h1 className='text-center text-4xl mb-2'>Categories</h1>
+              <h1 className='text-center text-4xl mb-2 font-roboto'>Categories</h1>
               <motion.div className='relative md:w-auto m-auto w-3/4 flex md:flex-row flex-col gap-2 flex-wrap place-content-center'>
                 {categories.map((categ, index) => {
                   return (
