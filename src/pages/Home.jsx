@@ -72,7 +72,7 @@ const Home = () => {
             {/* Latest products */}
             <div>
               <h1 className='m-auto rounded-md w-fit text-4xl text-center p-2 bg-slate-200'>Latest</h1>
-              <motion.div className='relative flex flex-wrap place-content-center '>
+              <motion.div className='relative flex flex-wrap md:w-full w-3/4 place-content-center m-auto'>
                 {products &&
                   products.map((product, index) => {
                     return (
@@ -80,7 +80,7 @@ const Home = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: index / 5 }}
-                        className='h-fit w-fit'
+                        className='md:h-fit md:w-fit w-1/2 aspect-square'
                         key={index}
                       >
                         <ItemHome info={product.data()} />
@@ -95,7 +95,10 @@ const Home = () => {
               <motion.div className='relative flex gap-2 flex-wrap place-content-center '>
                 {categories.map((categ, index) => {
                   return (
-                    <ItemPreviewHome key={index} type={"category"} name={categ.data().name} preview={categPreview[categ.data().name]} />
+                    <span key={index}>
+                      {/* Needs at least 1 product */}
+                      {categPreview[categ.data().name].length > 0 && <ItemPreviewHome type={"category"} name={categ.data().name} preview={categPreview[categ.data().name]} />}
+                    </span>
                   )
                 })
                 }
