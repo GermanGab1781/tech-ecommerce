@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import { CartContext } from '../../contexts/ShoppingCartContext';
 const Item = ({ info }) => {
+  const { cart, setCart } = useContext(CartContext)
+  const addToCart = () => {
+
+  }
+
+  /* const newItem = [{ id: info.id, name: info.info.name, image: info.images[0].Url, quantity: 1 }]
+  setCart(prevData => [...prevData, newItem]); */
+
   return (
     <div className='relative group overflow-hidden'>
       <NavLink to={"/product/" + info.id}>
@@ -15,7 +24,7 @@ const Item = ({ info }) => {
         </motion.div >
 
       </NavLink>
-      <span className='absolute border bottom-4 md:-right-96 right-5 group-hover:right-5 p-2'>Add To Cart</span>
+      <span onClick={() => addToCart()} className='absolute border bottom-4 md:-right-96 right-5 group-hover:right-5 p-2'>Add To Cart</span>
     </div>
   );
 }

@@ -21,9 +21,8 @@ export default function Footer() {
   }
 
   return (
-    <div className="flex md:flex-row flex-col gap-y-5 py-5 place-content-evenly text-center md:text-3xl text-xl">
-
-      <div className=''>
+    <div className="relative flex md:flex-row flex-col gap-y-5 md:mt-[20%] mt-[90%] py-5 place-content-evenly text-center md:text-3xl text-xl">
+      <div className='h-full'>
         <span className='text-2xl md:text-3xl'>Contact</span>
         <div className="flex flex-col gap-y-2 pl-2 ml-7 text-start md:place-items-start place-items-center text-xl custom-Color3">
           <a className='relative' href="mailto:germangabriel1998@gmail.com" target="_blank" rel='noreferrer'><AiOutlineMail className="absolute -left-8 bottom-1 h-5 w-10 custom-Color3" />germangabriel1998@gmail.com</a>
@@ -33,7 +32,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="">
+      <div className="h-full">
         <span className='text-2xl md:text-3xl'>Social</span>
         <div className="flex flex-row pt-5 gap-x-3 md:place-content-start place-content-center custom-Color3">
           <a href="https://www.instagram.com/german_gabriel__" target="_blank" rel='noreferrer'><BsInstagram className="h-10 w-10 scale-110 transition-all " /></a>

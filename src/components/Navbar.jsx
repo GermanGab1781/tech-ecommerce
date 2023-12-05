@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import Cart from './Cart';
+import { TiShoppingCart } from "react-icons/ti";
+import { CartContext } from '../contexts/ShoppingCartContext';
 
 export default function Navbar() {
+  const { cart, setCart } = useContext(CartContext)
+  const [toggleCart, setToggleCart] = useState(false);
 
   return (
     <motion.div className="fixed flex z-40 bg-slate-200 w-screen h-16 place-content-between">
@@ -11,9 +16,14 @@ export default function Navbar() {
       {/* Nav Items */}
       <div className='flex gap-x-3 my-auto mr-7'>
         <NavLink className="text-black transition-all delay-75" to="/Catalog">Catalog</NavLink>
-        <NavLink className="text-black transition-all delay-75" to="/Cart">Cart</NavLink>
+        {/* Cart */}
+        <div className="relative text-black transition-all delay-75 select-none cursor-pointer" onClick={() => { setToggleCart(!toggleCart) }}>
+          < TiShoppingCart className='text-2xl' />
+          <span className='absolute bottom-4 right-0'>{cart.length}</span>
+        </div>
         <NavLink className="hover:text-slate-50  transition-all delay-75" to="/admin/login">Log in</NavLink>
       </div>
+      <Cart toggle={toggleCart} setToggle={() => { setToggleCart(!toggleCart) }} />
     </motion.div>
   )
 }

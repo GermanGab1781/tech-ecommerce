@@ -60,7 +60,7 @@ const Home = () => {
   return (
     <div className='font-roboto font-medium'>
       {isDataLoaded ? (
-        <motion.div className='relative min-h-screen mb-60 bg-slate-100'>
+        <motion.div className='relative min-h-screen bg-slate-100 border-t-2 border-blue-900'>
           {/* Carousel */}
           <ReactImageGallery items={carousel} renderItem={item =>
             <div className="h-[75vh] overflow-hidden">
@@ -68,7 +68,7 @@ const Home = () => {
               <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-100 via-transparent to-transparent"></div>
             </div>
           } showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={'image-galleryHome'} />
-          <motion.div className='bg-transparent relative top-[30vh]'>
+          <motion.div className='bg-transparent relative top-[45vh]'>
             {/* Latest products */}
             <div>
               <h1 className='m-auto rounded-md w-fit text-4xl text-center p-2 bg-slate-200'>Latest</h1>
@@ -105,7 +105,7 @@ const Home = () => {
               </motion.div>
             </div>
             {/* Brands */}
-            <div className='bg-slate-100 pb-10'>
+            <div className='bg-slate-100 pb-10 border-b-2 border-blue-900'>
               <h1 className='text-center text-4xl mb-2'>Brands</h1>
               <motion.div className='relative flex gap-2 flex-wrap place-content-center md:w-auto w-3/4 m-auto'>
                 {brands.map((brand, index) => {
