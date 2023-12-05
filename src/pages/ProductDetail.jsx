@@ -1,14 +1,16 @@
 import { doc, getDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../firebase';
 import ReactImageGallery from 'react-image-gallery';
+import { CartContext } from '../contexts/ShoppingCartContext';
 
 const ProductDetail = () => {
   const params = useParams()
   const keyword = params.id
   const [product, setProduct] = useState(undefined)
   const [images, setImages] = useState([])
+  const { addToCart } = useContext(CartContext)
 
   function setImagesForCarousel(list) {
     let result = []
@@ -39,7 +41,7 @@ const ProductDetail = () => {
             <span>Price: ${product.info.price}</span>
             <span>Brand: {product.info.brand}</span>
           </div>
-          <span className='border p-5 bg-red-200'>Add to Cart</span>
+          <span onClick={() => addToCart(product)} className='border p-5 bg-red-200'>Add to Cart</span>
         </div>
       }
     </div>
