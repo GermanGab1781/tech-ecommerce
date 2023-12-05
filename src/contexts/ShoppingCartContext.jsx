@@ -8,15 +8,58 @@ export const ShoppingCartProvider = ({ children }) => {
     const storedCart = localStorage.getItem('cart');
     return storedCart ? JSON.parse(storedCart) : [];
   });
+  const [total, setTotal] = useState(() => {
+    const storedTotal = localStorage.getItem('total');
+    return storedTotal ? JSON.parse(storedTotal) : 0;
+  });
+  const [quantity, setQuantity] = useState(() => {
+    const storedQuantity = localStorage.getItem('quantity');
+    return storedQuantity ? JSON.parse(storedQuantity) : 0;
+  });
+
+  const addToCart = (info) => {
+    const updatedCart = [...cart];
+    const foundItem = updatedCart.find(item => item.data.id === info.id);
+    if (foundItem) {
+      foundItem.quantity += 1; // Increment quantity by 1 if the ID exists
+      setQuantity(quantity + 1)
+    } else {
+      updatedCart.push({ data: { id: info.id, name: info.info.name, image: info.images[0].Url, price: info.info.price }, quantity: 1 }); // Add new item with quantity 1
+      setQuantity(quantity + 1)
+    }
+    setCart(updatedCart);
+  }
+
+  const removeFromCart = (id) => {
+    const updatedCart = [...cart];
+    const foundItem = updatedCart.find(item => item.data.id === id);
+    if (foundItem && foundItem.quantity > 1) {
+      foundItem.quantity -= 1; // Increment quantity by 1 if the ID exists
+      setQuantity(quantity - 1)
+    } else {
+      updatedCart.splice(foundItem, 1)
+      setQuantity(quantity - 1)
+    }
+    setCart(updatedCart);
+  }
 
   // Update localStorage whenever cart changes
   useEffect(() => {
+    /* Update total price */
     localStorage.setItem('cart', JSON.stringify(cart));
+    let totalPrice = 0
+    cart.forEach(element => {
+      totalPrice += element.quantity * element.data.price
+    });
+    setTotal(totalPrice)
   }, [cart]);
 
   const contextValue = {
     cart,
-    setCart,
+    total,
+    quantity,
+    addToCart,
+    removeFromCart,
   };
 
   return (

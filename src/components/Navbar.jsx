@@ -6,7 +6,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { CartContext } from '../contexts/ShoppingCartContext';
 
 export default function Navbar() {
-  const { cart, setCart } = useContext(CartContext)
+  const { cart, quantity } = useContext(CartContext)
   const [toggleCart, setToggleCart] = useState(false);
 
   return (
@@ -19,7 +19,7 @@ export default function Navbar() {
         {/* Cart */}
         <div className="relative text-black transition-all delay-75 select-none cursor-pointer" onClick={() => { setToggleCart(!toggleCart) }}>
           < TiShoppingCart className='text-2xl' />
-          <span className='absolute bottom-4 right-0'>{cart.length}</span>
+          <span className='absolute bottom-4 right-0'>{quantity}</span>
         </div>
         <NavLink className="hover:text-slate-50  transition-all delay-75" to="/admin/login">Log in</NavLink>
       </div>
