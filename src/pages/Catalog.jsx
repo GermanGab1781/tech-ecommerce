@@ -57,7 +57,7 @@ const Catalog = () => {
 
   const isDataLoaded = categs && docsCopy;
   return (
-    <div className='relative font-raleway font-semibold bg-slate-200'>
+    <div className='relative font-semibold bg-slate-200'>
       {isDataLoaded ?
         (
           <div className='flex md:flex-row flex-col min-h-screen relative' >

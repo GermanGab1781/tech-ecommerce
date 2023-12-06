@@ -138,21 +138,31 @@ const Upload = () => {
   }
 
   const changeInput = (e) => {
-    let indexImg;
-    if (images.length > 0) {
-      indexImg = images[images.length - 1].index + 1;
-    } else {
-      indexImg = 0;
-    }
-    if (images.length >= 5) {
-      alert('Only 5 permitted, delete one to proceed')
-    } else {
-      let newImgsToState = readmultifiles(e, indexImg);
-      let newImgsState = [...images, ...newImgsToState];
-      setImages(newImgsState);
-    }
+    const fileName = e.target.files[0].name
+    /* Get the type, check in case it has multiple Dots Example: this.image.has.dots.JPG */
+    const lastDotIndex = fileName.lastIndexOf('.');
+    if (lastDotIndex !== -1) {
+      const fileExtension = fileName.substring(lastDotIndex + 1).toLowerCase();
+      if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'bmp' || fileExtension === 'webp' || fileExtension === 'svg') {
 
+        let indexImg;
+        if (images.length > 0) {
+          indexImg = images[images.length - 1].index + 1;
+        } else {
+          indexImg = 0;
+        }
+        if (images.length >= 5) {
+          alert('Only 5 permitted, delete one to proceed')
+        } else {
+          let newImgsToState = readmultifiles(e, indexImg);
+          let newImgsState = [...images, ...newImgsToState];
+          setImages(newImgsState);
+        }
 
+      } else {
+        Swal.fire({ icon: 'error', title: 'That file is not an image!!!' });
+      }
+    }
   };
 
 
@@ -209,7 +219,7 @@ const Upload = () => {
         {/* Images */}
         <label className='text-2xl font-bold'>Images (1-5)</label>
         <div className=' flex flex-col place-items-center border border-teal-500 p-20 w-[75%]'>
-          <input className='border' type="file" onChange={changeInput} />
+          <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" className='border' type="file" onChange={changeInput} />
           <div className='flex flex-row flex-wrap place-content-center gap-x-5 gap-y-7 p-5'>
             {images.map((image) => {
               return (

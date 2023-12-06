@@ -45,9 +45,16 @@ const Home = () => {
       setBrands(Array.from(initialBrands))
       setBrandsPreview(initialBrandsPreview);
       setCategPreview(initialCategPreview);
-      setCarousel(Object.values(dataCarousel.data()).map(imageObj => ({
+      setCarousel(
+        Object.values(dataCarousel.data())
+          .filter(imageObj => imageObj.Url !== "") // Filter out empty Url values
+          .map(imageObj => ({
+            original: imageObj.Url,
+          }))
+      );
+      /* setCarousel(Object.values(dataCarousel.data()).map(imageObj => ({
         original: imageObj.Url,
-      })))
+      }))) */
     }
     getAllDocs();
   }, [])
@@ -58,7 +65,7 @@ const Home = () => {
   /* const isMobile = useMediaQuery({ query: "(max-width: 800px)" }); */
 
   return (
-    <div className='font-roboto font-medium'>
+    <div className='font-medium md:mb-[20%] mb-[90%]'>
       {isDataLoaded ? (
         <motion.div className='relative min-h-screen bg-slate-100 border-t-2 border-blue-900'>
           {/* Carousel */}
@@ -68,11 +75,11 @@ const Home = () => {
               <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-100 via-transparent to-transparent"></div>
             </div>
           } showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={'image-galleryHome'} />
-          <motion.div className='bg-transparent relative top-[45vh]'>
+          <motion.div className='bg-transparent relative top-[45vh] flex flex-col gap-y-5'>
             {/* Latest products */}
             <div>
-              <h1 className='m-auto rounded-md w-fit text-4xl text-center p-2 bg-slate-200'>Latest</h1>
-              <motion.div className='relative flex flex-wrap md:w-full w-3/4 place-content-center m-auto'>
+              <h1 className=' md:w-3/4 w-full m-auto text-4xl mb-2 text-center p-2 bg-white border border-blue-900'>Latest</h1>
+              <motion.div className='relative flex flex-wrap gap-1 md:w-full w-3/4 place-content-center m-auto'>
                 {products &&
                   products.map((product, index) => {
                     return (
@@ -80,7 +87,7 @@ const Home = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: index / 5 }}
-                        className='md:h-fit md:w-fit w-1/2 aspect-square'
+                        className='md:h-fit md:w-fit w-[45%] aspect-square'
                         key={index}
                       >
                         <ItemHome info={product.data()} />
@@ -91,7 +98,7 @@ const Home = () => {
             </div>
             {/* Categories */}
             <div>
-              <h1 className='text-center text-4xl mb-2 font-roboto'>Categories</h1>
+              <h1 className=' md:w-3/4 w-full m-auto text-4xl mb-2 text-center p-2 bg-white border border-blue-900'>Categories</h1>
               <motion.div className='relative md:w-auto m-auto w-3/4 flex md:flex-row flex-col gap-2 flex-wrap place-content-center'>
                 {categories.map((categ, index) => {
                   return (
@@ -106,7 +113,7 @@ const Home = () => {
             </div>
             {/* Brands */}
             <div className='bg-slate-100 pb-10 border-b-2 border-blue-900'>
-              <h1 className='text-center text-4xl mb-2'>Brands</h1>
+              <h1 className=' md:w-3/4 w-full m-auto text-4xl mb-2 text-center p-2 bg-white border border-blue-900'>Brands</h1>
               <motion.div className='relative flex gap-2 flex-wrap place-content-center md:w-auto w-3/4 m-auto'>
                 {brands.map((brand, index) => {
                   return (

@@ -48,7 +48,6 @@ const Carousel = () => {
       }
       setImageChange1(true)
       setImage1({ Url: url, name: file.name, file })
-      console.log(oldImage1)
     }
     else if (id === "second") {
       if (image2.path !== undefined) {
@@ -69,94 +68,125 @@ const Carousel = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault()
+    Swal.fire({ title: "Uploading please wait....", icon: "info", showConfirmButton: false })
     const id = e.currentTarget.id
     if (id === "first") {
-      if (oldImage1.path !== undefined) {
-        if (imageChange1) {
-          const imgRef = ref(storage, oldImage1.path)
-          console.log(oldImage1)
-          /* Delete old image to add the new one */
-          deleteObject(imgRef).then(() => {
-            uploadImage(image1).then((res) => {
-              updateDoc((docRef), {
-                image1: res
-              }).then(() => {
-                Swal.fire({ title: "First Background image uploaded", icon: "success" })
-                setImageChange1(false)
-                setImage1(res)
+      const fileName = image1.name
+      /* Get the type, check in case it has multiple Dots Example: this.image.has.dots.JPG */
+      const lastDotIndex = fileName.lastIndexOf('.');
+      if (lastDotIndex !== -1) {
+        const fileExtension = fileName.substring(lastDotIndex + 1).toLowerCase();
+        if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'bmp' || fileExtension === 'webp' || fileExtension === 'svg') {
+          if (oldImage1.path !== "") {
+            if (imageChange1) {
+              const imgRef = ref(storage, oldImage1.path)
+              /* Delete old image to add the new one */
+              deleteObject(imgRef).then(() => {
+                uploadImage(image1).then((res) => {
+                  updateDoc((docRef), {
+                    image1: res
+                  }).then(() => {
+                    Swal.fire({ title: "First Background image uploaded", icon: "success" })
+                    setImageChange1(false)
+                    setImage1(res)
+                  })
+                })
               })
-            })
-          })
+            }
+          } else {
+            if (image1.Url !== "" && image1 !== undefined)
+              /* Add image */
+              uploadImage(image1).then((res) => {
+                updateDoc((docRef), {
+                  image1: res
+                }).then(() => {
+                  Swal.fire({ title: "First Background image uploaded", icon: "success" })
+                })
+              })
+          }
         }
-      } else {
-        if (image1.Url !== "" && image1 !== undefined)
-          /* Add image */
-          uploadImage(image1).then((res) => {
-            updateDoc((docRef), {
-              image1: res
-            }).then(() => {
-              Swal.fire({ title: "First Background image uploaded", icon: "success" })
-            })
-          })
+        else {
+          Swal.fire({ icon: 'error', title: 'That file is not an image!!!' });
+        }
       }
     } else if (id === "second") {
-      if (oldImage2.path !== undefined) {
-        if (imageChange2) {
-          const imgRef = ref(storage, oldImage2.path)
-          /* Delete old image to add the new one */
-          deleteObject(imgRef).then(() => {
-            uploadImage(image2).then((res) => {
-              updateDoc((docRef), {
-                image2: res
-              }).then(() => {
-                Swal.fire({ title: "Second Background image uploaded", icon: "success" })
-                setImageChange2(false)
-                setImage2(res)
+      const fileName = image2.name
+      /* Get the type, check in case it has multiple Dots Example: this.image.has.dots.JPG */
+      const lastDotIndex = fileName.lastIndexOf('.');
+      if (lastDotIndex !== -1) {
+        const fileExtension = fileName.substring(lastDotIndex + 1).toLowerCase();
+        if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'bmp' || fileExtension === 'webp' || fileExtension === 'svg') {
+          if (oldImage2.path !== "") {
+            if (imageChange2) {
+              const imgRef = ref(storage, oldImage2.path)
+              /* Delete old image to add the new one */
+              deleteObject(imgRef).then(() => {
+                uploadImage(image2).then((res) => {
+                  updateDoc((docRef), {
+                    image2: res
+                  }).then(() => {
+                    Swal.fire({ title: "Second Background image uploaded", icon: "success" })
+                    setImageChange2(false)
+                    setImage2(res)
+                  })
+                })
               })
-            })
-          })
+            }
+          } else {
+            if (image2.Url !== "" && image2 !== undefined)
+              /* Add image */
+              uploadImage(image2).then((res) => {
+                updateDoc((docRef), {
+                  image2: res
+                }).then(() => {
+                  Swal.fire({ title: "Second Background image uploaded", icon: "success" })
+                })
+              })
+          }
+        } else {
+          Swal.fire({ icon: 'error', title: 'That file is not an image!!!' });
         }
-      } else {
-        if (image2.Url !== "" && image2 !== undefined)
-          /* Add image */
-          uploadImage(image2).then((res) => {
-            updateDoc((docRef), {
-              image2: res
-            }).then(() => {
-              Swal.fire({ title: "Second Background image uploaded", icon: "success" })
-            })
-          })
       }
     } else if (id === "third") {
-      if (oldImage3.path !== undefined) {
-        if (imageChange3) {
-          const imgRef = ref(storage, oldImage3.path)
-          /* Delete old image to add the new one */
-          deleteObject(imgRef).then(() => {
-            uploadImage(image3).then((res) => {
-              updateDoc((docRef), {
-                image3: res
-              }).then(() => {
-                Swal.fire({ title: "Third Background image uploaded", icon: "success" })
-                setImageChange3(false)
-                setImage3(res)
+      const fileName = image3.name
+      /* Get the type, check in case it has multiple Dots Example: this.image.has.dots.JPG */
+      const lastDotIndex = fileName.lastIndexOf('.');
+      if (lastDotIndex !== -1) {
+        const fileExtension = fileName.substring(lastDotIndex + 1).toLowerCase();
+        if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'bmp' || fileExtension === 'webp' || fileExtension === 'svg') {
+          console.log(oldImage3)
+          if (oldImage3.path !== "") {
+            if (imageChange3) {
+              const imgRef = ref(storage, oldImage3.path)
+              /* Delete old image to add the new one */
+              deleteObject(imgRef).then(() => {
+                uploadImage(image3).then((res) => {
+                  updateDoc((docRef), {
+                    image3: res
+                  }).then(() => {
+                    Swal.fire({ title: "Third Background image uploaded", icon: "success" })
+                    setImageChange3(false)
+                    setImage3(res)
+                  })
+                })
               })
-            })
-          })
+            }
+          } else {
+            if (image3.Url !== "" && image3 !== undefined)
+              /* Add image */
+              uploadImage(image3).then((res) => {
+                updateDoc((docRef), {
+                  image3: res
+                }).then(() => {
+                  Swal.fire({ title: "Third Background image uploaded", icon: "success" })
+                })
+              })
+          }
+        } else {
+          Swal.fire({ icon: 'error', title: 'That file is not an image!!!' });
         }
-      } else {
-        if (image3.Url !== "" && image3 !== undefined)
-          /* Add image */
-          uploadImage(image3).then((res) => {
-            updateDoc((docRef), {
-              image3: res
-            }).then(() => {
-              Swal.fire({ title: "Third Background image uploaded", icon: "success" })
-            })
-          })
       }
     }
-
   }
 
   const uploadImage = (image) => {
@@ -187,7 +217,7 @@ const Carousel = () => {
       <form id="first" className='flex flex-col gap-y-10 place-items-center' onSubmit={handleUpdate}>
         <div>
           <div className="text-2xl">First Image</div>
-          <input onChange={changeImage} name='first' type='file' />
+          <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='first' type='file' />
           <div>Preview</div>
           {(image1 && image1.Url !== "")
             ? <div className='relative h-[65vh] w-screen border'>
@@ -203,7 +233,7 @@ const Carousel = () => {
       <form id="second" className='flex flex-col gap-y-10 place-items-center' onSubmit={handleUpdate}>
         <div>
           <div className="text-2xl">Second Image</div>
-          <input onChange={changeImage} name='second' type='file' />
+          <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='second' type='file' />
           <div>Preview</div>
           {(image2 && image2.Url !== "")
             ? <div className='relative h-[65vh] w-screen border'>
@@ -219,7 +249,7 @@ const Carousel = () => {
       <form id="third" className='flex flex-col gap-y-10 place-items-center' onSubmit={handleUpdate}>
         <div>
           <div className="text-2xl">Third Image</div>
-          <input onChange={changeImage} name='third' type='file' />
+          <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='third' type='file' />
           <div>Preview</div>
           {(image3 && image3.Url !== "")
             ? <div className='relative h-[65vh] w-screen border'>
