@@ -24,7 +24,7 @@ const Home = () => {
     const initialBrandsPreview = {};
     const getAllDocs = async () => {
       const dataCategs = await getDocs(collection(db, "/products/Categories/list"))
-      const dataProducts = await getDocs(query(collection(db, "/products/ProductsInfo/All"), orderBy('timestamp', 'asc')));
+      const dataProducts = await getDocs(query(collection(db, "/products/ProductsInfo/All"), orderBy('timestamp', 'desc')));
       const dataCarousel = await getDoc(doc(db, "homepage", "carousel"));
       setCategories(dataCategs.docs)
       setProducts(dataProducts.docs.slice(0, 4));
@@ -78,7 +78,7 @@ const Home = () => {
           <motion.div className='bg-transparent relative md:top-[65vh] top-[60vh] flex flex-col'>
             {/* Latest products */}
             <div className='mb-5'>
-              <h1 className='w-3/4  m-auto text-4xl mb-2 text-center text-white p-2 bg-slate-700 border-2 border-black'>Latest</h1>
+              <h1 className='w-3/4 m-auto text-4xl mb-2 text-center text-white p-2 bg-blue-950 border-2 border-black'>Latest</h1>
               <motion.div className='relative flex flex-wrap gap-1 md:w-full w-3/4 place-content-center m-auto'>
                 {products &&
                   products.map((product, index) => {
@@ -98,7 +98,7 @@ const Home = () => {
             </div>
             {/* Categories */}
             <div className='pb-10 bg-slate-800'>
-              <h1 className='w-3/4 m-auto text-4xl mb-2 text-center text-white p-2 bg-slate-700 border-2 border-black'>Categories</h1>
+              <h1 className='w-3/4 m-auto text-4xl mb-2 text-center text-white p-2 bg-blue-950 border-2 border-black'>Categories</h1>
               <motion.div className='relative md:w-auto m-auto w-3/4 flex md:flex-row flex-col gap-2 flex-wrap place-content-center'>
                 {categories.map((categ, index) => {
                   return (
@@ -113,7 +113,7 @@ const Home = () => {
             </div >
             {/* Brands */}
             <div className=' pb-10 border-b-2  border-orange-400 bg-slate-800'>
-              <h1 className='w-3/4 m-auto text-4xl mb-2 text-center text-white p-2 bg-slate-700 border-2 border-black'>Brands</h1>
+              <h1 className='w-3/4 m-auto text-4xl mb-2 text-center text-white p-2 bg-blue-950 border-2 border-black'>Brands</h1>
               <motion.div className='relative flex gap-2 flex-wrap place-content-center md:w-auto w-3/4 m-auto'>
                 {brands.map((brand, index) => {
                   return (
@@ -128,8 +128,8 @@ const Home = () => {
       )
         /* Loading page */
         : (
-          <div className='relative bg-transparent w-full h-screen text-4xl text-center animate-pulse border'>
-            <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 '>Optimizing the digital aisles for your browsing pleasure...</span>
+          <div className='relative bg-transparent h-screen w-full text-4xl text-center animate-pulse'>
+            <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 text-white'>Optimizing the digital aisles for your browsing pleasure...</span>
           </div>
         )}
     </div>

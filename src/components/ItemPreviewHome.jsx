@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const ItemPreviewHome = ({ name, preview, type }) => {
   return (
-    <NavLink to={"/catalog/" + type + "/" + name} className='flex flex-col relative group md:w-[20vw] aspect-square cursor-pointer place-items-center bg-blue-900 text-center border border-blue-900'>
+    <NavLink to={"/catalog/" + type + "/" + name} className='flex flex-col relative group md:w-[20vw] aspect-square cursor-pointer place-items-center bg-slate-600 text-center border border-blue-900 hover:border-orange-400'>
       <span className='text-xl text-white'>{name}</span>
       <div className='relative grid grid-cols-2 md:gap-y-1 gap-y-4 p-2 h-[90%] w-[90%] place-items-center place-content-start '>
         {preview.map((product, index) => {

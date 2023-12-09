@@ -1,8 +1,7 @@
 import React from 'react';
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase';
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion';
 import SideBar from '../components/Catalog/SideBar';
 import View from '../components/Catalog/View';
 import { useParams } from 'react-router-dom';
@@ -57,7 +56,7 @@ const Catalog = () => {
 
   const isDataLoaded = categs && docsCopy;
   return (
-    <div className='relative font-semibold bg-slate-200'>
+    <div className='relative font-semibold bg-slate-800 mt-5'>
       {isDataLoaded ?
         (
           <div className='flex md:flex-row flex-col min-h-screen relative' >
@@ -70,8 +69,8 @@ const Catalog = () => {
         /* Loading page */
         :
         (
-          <div className='relative bg-transparent w-full h-screen text-4xl text-center animate-pulse border'>
-            <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 '>Fine-tuning our digital storefront for an exceptional experience...</span>
+          <div className='relative bg-transparent w-full h-screen text-4xl text-center animate-pulse'>
+            <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 text-white'>Fine-tuning our digital storefront for an exceptional experience...</span>
           </div>
         )}
     </div>
