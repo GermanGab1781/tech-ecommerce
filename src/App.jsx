@@ -12,7 +12,7 @@ function App() {
         <ShoppingCartProvider>
           <BrowserRouter>
             <Navbar />
-            <div className='min-h-screen bg-white py-16 font-dosis'><AnimatedRoutes /></div>
+            <div className='min-h-screen bg-slate-800 py-16 font-dosis'><AnimatedRoutes /></div>
             <Footer />
           </BrowserRouter>
         </ShoppingCartProvider>

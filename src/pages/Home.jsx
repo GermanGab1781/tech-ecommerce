@@ -65,20 +65,20 @@ const Home = () => {
   /* const isMobile = useMediaQuery({ query: "(max-width: 800px)" }); */
 
   return (
-    <div className='font-medium md:mb-[20%] mb-[90%]'>
+    <div className='font-medium md:mb-[30%] mb-[130%] bg-slate-800'>
       {isDataLoaded ? (
-        <motion.div className='relative min-h-screen bg-slate-100 border-t-2 border-blue-900'>
+        <motion.div className='relative min-h-screen bg-slate-800'>
           {/* Carousel */}
           <ReactImageGallery items={carousel} renderItem={item =>
             <div className="h-[75vh] overflow-hidden">
               <img className="w-full h-full object-fill" src={item.original} alt="Promo" />
-              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-100 via-transparent to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-800 via-transparent to-transparent"></div>
             </div>
           } showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={'image-galleryHome'} />
-          <motion.div className='bg-transparent relative top-[45vh] flex flex-col gap-y-5'>
+          <motion.div className='bg-transparent relative md:top-[65vh] top-[60vh] flex flex-col'>
             {/* Latest products */}
-            <div>
-              <h1 className=' md:w-3/4 w-full m-auto text-4xl mb-2 text-center p-2 bg-white border border-blue-900'>Latest</h1>
+            <div className='mb-5'>
+              <h1 className='w-3/4  m-auto text-4xl mb-2 text-center text-white p-2 bg-slate-700 border-2 border-black'>Latest</h1>
               <motion.div className='relative flex flex-wrap gap-1 md:w-full w-3/4 place-content-center m-auto'>
                 {products &&
                   products.map((product, index) => {
@@ -97,8 +97,8 @@ const Home = () => {
               </motion.div>
             </div>
             {/* Categories */}
-            <div>
-              <h1 className=' md:w-3/4 w-full m-auto text-4xl mb-2 text-center p-2 bg-white border border-blue-900'>Categories</h1>
+            <div className='pb-10 bg-slate-800'>
+              <h1 className='w-3/4 m-auto text-4xl mb-2 text-center text-white p-2 bg-slate-700 border-2 border-black'>Categories</h1>
               <motion.div className='relative md:w-auto m-auto w-3/4 flex md:flex-row flex-col gap-2 flex-wrap place-content-center'>
                 {categories.map((categ, index) => {
                   return (
@@ -110,10 +110,10 @@ const Home = () => {
                 })
                 }
               </motion.div>
-            </div>
+            </div >
             {/* Brands */}
-            <div className='bg-slate-100 pb-10 border-b-2 border-blue-900'>
-              <h1 className=' md:w-3/4 w-full m-auto text-4xl mb-2 text-center p-2 bg-white border border-blue-900'>Brands</h1>
+            <div className=' pb-10 border-b-2  border-orange-400 bg-slate-800'>
+              <h1 className='w-3/4 m-auto text-4xl mb-2 text-center text-white p-2 bg-slate-700 border-2 border-black'>Brands</h1>
               <motion.div className='relative flex gap-2 flex-wrap place-content-center md:w-auto w-3/4 m-auto'>
                 {brands.map((brand, index) => {
                   return (
