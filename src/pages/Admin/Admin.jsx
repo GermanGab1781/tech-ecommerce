@@ -9,26 +9,27 @@ const Admin = () => {
     window.scrollTo(0, 0);
   }, [])
   return (
-    <div className='flex flex-col py-36 gap-y-8 text-center px-16'>
+    <div className='flex flex-col border-b-2 border-orange-400 h-screen gap-y-8 py-16 text-center text-white bg-black'>
       <span className='text-4xl'>Admin</span>
 
-      <div className='flex justify-center gap-x-3' >
-        <NavLink className='border w-1/2 border-black p-5 hover:bg-black hover:text-white' to="/admin/upload/product">
-          Upload product</NavLink>
-        <NavLink className='border w-1/4 border-black p-5 hover:bg-black hover:text-white' to="/admin/view/product">
-          View/Edit/Delete</NavLink>
+      <div className='flex justify-center gap-x-3 ' >
+        <NavLink className='border w-1/2 border-orange-400 p-5 text-2xl hover:bg-orange-400 hover:text-white' to="/admin/upload/product">
+          New product</NavLink>
+        <NavLink className='border md:w-1/4 w-1/3 group border-orange-400 p-5 text-2xl hover:bg-orange-400 hover:text-white' to="/admin/view/product">
+          View/<span className='text-green-400 group-hover:text-green-600'>Edit</span>/<span className='text-red-400 group-hover:text-red-800'>Delete</span></NavLink>
       </div>
 
-      <div className='flex justify-center gap-x-3' >
-        <NavLink className='border w-1/2 border-black p-5 hover:bg-black hover:text-white' to="/admin/upload/category">
+      <div className='flex justify-center gap-x-3 ' >
+        <NavLink className='border w-1/2 border-orange-400 p-5 text-2xl hover:bg-orange-400 hover:text-white' to="/admin/upload/category">
           New Category</NavLink>
-        <NavLink className='border w-1/4 border-black p-5 hover:bg-black hover:text-white' to="/admin/view/category">
-          View/Edit/Delete</NavLink>
+        <NavLink className='border md:w-1/4 w-1/3 group border-orange-400 p-5 text-2xl hover:bg-orange-400 hover:text-white' to="/admin/view/category">
+          View/<span className='text-green-400 group-hover:text-green-600'>Edit</span>/<span className='text-red-400 group-hover:text-red-800'>Delete</span></NavLink>
       </div>
-      <NavLink className='border w-[77%] m-auto border-black p-5 hover:bg-black hover:text-white' to="/admin/home">
-        Home page changes</NavLink>
 
-      <span className='cursor-pointer border border-black m-auto p-3 hover:bg-red-600'
+      <NavLink className='border w-[73%] mx-auto border-orange-400 p-5 text-2xl hover:bg-orange-400 hover:text-white' to="/admin/home">
+        Home page Backgrounds</NavLink>
+
+      <span className='cursor-pointer border border-red-400 mx-auto p-3 hover:bg-red-600'
         onClick={() => { signOut(auth); Swal.fire({ icon: 'info', title: 'Sesion terminada' }) }}>
         Log out
       </span>

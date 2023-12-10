@@ -4,13 +4,15 @@ import { NavLink } from 'react-router-dom';
 import Cart from './Cart';
 import { TiShoppingCart } from "react-icons/ti";
 import { CartContext } from '../contexts/ShoppingCartContext';
+import { useAuthState } from '../firebase';
 
 export default function Navbar() {
   const { quantity } = useContext(CartContext)
+  const { user, isAuthenticated } = useAuthState();
   const [toggleCart, setToggleCart] = useState(false);
 
   return (
-    <motion.div className="fixed flex z-40 bg-slate-800 text-white border-y-2 border-orange-400 w-screen h-16 place-content-between">
+    <motion.div className="fixed flex z-40 bg-black text-white border-y-2 border-orange-400 w-screen h-16 place-content-between">
       {/* Brand */}
       <NavLink className="my-auto" to="/"><span className="text-3xl">GogoGadget</span></NavLink>
       {/* Nav Items */}
@@ -21,7 +23,11 @@ export default function Navbar() {
           < TiShoppingCart className='text-2xl' />
           <span className='absolute bottom-4 right-0'>{quantity}</span>
         </div>
-        <NavLink className="hover:text-slate-50  transition-all delay-75" to="/admin/login">Log in</NavLink>
+        {isAuthenticated
+          ? <NavLink className="hover:text-slate-50  transition-all delay-75 text-green-600" to="/admin/login">Admin</NavLink>
+          : <NavLink className="hover:text-slate-50  transition-all delay-75" to="/admin/login">Admin</NavLink>
+        }
+
       </div>
       <Cart toggle={toggleCart} setToggle={() => { setToggleCart(!toggleCart) }} />
     </motion.div>

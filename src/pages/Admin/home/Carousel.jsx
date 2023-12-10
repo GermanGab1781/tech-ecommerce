@@ -211,55 +211,66 @@ const Carousel = () => {
   }
 
   return (
-    <div className='text-center'>
+    <div className='text-center text-white'>
 
       {/* First Image */}
       <form id="first" className='flex flex-col gap-y-10 place-items-center' onSubmit={handleUpdate}>
         <div>
-          <div className="text-2xl">First Image</div>
-          <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='first' type='file' />
+          <div className='flex flex-col place-items-center'>
+            <div className="text-2xl">First Image</div>
+            <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='first' type='file' />
+            <button className={(image1 && image1.Url !== "")
+              ? "border w-1/2 bg-red-400 border-black p-5 hover:text-white text-xl font-bold"
+              : "border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold"}
+              disabled={(image1 && image1.Url !== "") ? "true" : "false"} type='submit'>{(image1 && image1.Url !== "") ? "Upload Something" : "Upload"}
+            </button>
+          </div>
           <div>Preview</div>
           {(image1 && image1.Url !== "")
-            ? <div className='relative h-[65vh] w-screen border'>
+            ? <div className='relative h-[65vh] w-screen '>
               <img src={image1.Url} className='bg-contain h-[65vh] w-full' alt='Image 1 for homepage background' />
-              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-800 via-transparent to-transparent"></div>
             </div>
             : <div className='border border-red-500 p-20 w-full m-auto'>Image 1 Not defined Please upload</div>
           }
         </div>
-        <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
+
       </form>
       {/* Second Image */}
       <form id="second" className='flex flex-col gap-y-10 place-items-center' onSubmit={handleUpdate}>
         <div>
-          <div className="text-2xl">Second Image</div>
-          <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='second' type='file' />
+          <div className='flex flex-col place-items-center'>
+            <div className="text-2xl">Second Image</div>
+            <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='second' type='file' />
+            <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
+          </div>
           <div>Preview</div>
           {(image2 && image2.Url !== "")
-            ? <div className='relative h-[65vh] w-screen border'>
+            ? <div className='relative h-[65vh] w-screen '>
               <img src={image2.Url} className='bg-contain h-[65vh] w-full' alt='Image 2 for homepage background' />
-              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-800 via-transparent to-transparent"></div>
             </div>
             : <div className='border border-red-500 p-20 w-full m-auto'>Image 2 Not defined Please upload</div>
           }
         </div>
-        <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
       </form>
       {/* Third Image */}
       <form id="third" className='flex flex-col gap-y-10 place-items-center' onSubmit={handleUpdate}>
         <div>
-          <div className="text-2xl">Third Image</div>
-          <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='third' type='file' />
+          <div className='flex flex-col place-items-center'>
+            <div className="text-2xl">Third Image</div>
+            <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" onChange={changeImage} name='third' type='file' />
+            <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
+          </div>
           <div>Preview</div>
           {(image3 && image3.Url !== "")
-            ? <div className='relative h-[65vh] w-screen border'>
+            ? <div className='relative h-[65vh] w-screen '>
               <img src={image3.Url} className='bg-contain h-[65vh] w-full' alt='Image 3 for homepage background' />
-              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-800 via-transparent to-transparent"></div>
             </div>
             : <div className='border border-red-500 p-20 w-full m-auto'>Image 3 Not defined Please upload</div>
           }
         </div>
-        <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
       </form>
     </div >
   );

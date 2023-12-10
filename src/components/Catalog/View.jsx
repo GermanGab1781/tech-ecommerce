@@ -10,7 +10,7 @@ const View = ({ items, title }) => {
       <motion.div key={title} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className='h-[20%] text-5xl text-center text-white'>
         {title === undefined ? <span className=''>Our Products</span> : <span className=''>{title}</span>}
       </motion.div>
-      <div className='flex border-2 border-black border-l-0  min-h-screen flex-wrap justify-center place-content-start gap-10 md:pt-o pt-5'>
+      <div className='flex border-2 border-black min-h-screen flex-wrap justify-center place-content-start gap-10 md:pt-o pt-5'>
         {items.length > 0 ? items.map((item, index) => {
           return (
             <Item key={index} info={item} />

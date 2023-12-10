@@ -39,13 +39,14 @@ const Login = () => {
   }
 
   return (
-    <div className='flex items-center justify-center border place-content-center '>
-      <form className='border text-center w-[80%] p-10' onSubmit={handleSignIn}>
-        <label className=''>Email</label><br />
-        <input className='border border-black' type="email" id="email" onChange={handleInput} /><br />
-        <label className=''>Password</label><br />
-        <input className='border border-black' type="password" id="password" onChange={handleInput} /><br />
-        <button className='border p-3 hover:bg-green-600'>Log in</button>
+    <div className='flex h-[70vh] items-center justify-center place-content-center text-white'>
+      <form className='flex flex-col gap-y-2 place-items-center border border-blue-900 text-center w-[80%] p-10 bg-black' onSubmit={handleSignIn}>
+        <h1 className='text-4xl font-semibold text-white mb-5'>Admin Page</h1>
+        <label className='text-2xl'>Email</label><br />
+        <input className='border border-black rounded-md w-[40%] text-black text-center' type="email" id="email" onChange={handleInput} /><br />
+        <label className='text-2xl'>Password</label><br />
+        <input className='border border-black rounded-md w-[40%] text-black text-center' type="password" id="password" onChange={handleInput} /><br />
+        <button className='border p-3 bg-slate-800 hover:bg-orange-400 rounded-md w-[20%]'>Log in</button>
         <div>user:admin@test.com</div>
         <div>password:aREALLYhardPassWORD123</div>
       </form>
