@@ -14,6 +14,7 @@ const Catalog = () => {
   const params = useParams()
   const keywordId = params.id
   const keywordType = params.type
+  const [currentPage, setCurrentPage] = useState(1);
 
   const changeSearch = (newValue, type) => {
     if (search !== newValue) {
@@ -22,7 +23,7 @@ const Catalog = () => {
       setSearch(undefined)
     }
   }
-  useEffect(() => { window.scroll(0, 1); }, [])
+  useEffect(() => { window.scroll(0, 1); }, [currentPage])
 
   useEffect(() => {
     const getAllDocs = async () => {
@@ -51,6 +52,7 @@ const Catalog = () => {
     } else if (search[1] === "brand") {
       setDocsCopy(docs.filter(item => item.info.brand === search[0]))
     }
+    setCurrentPage(1)
   }, [search])
 
 
@@ -62,7 +64,7 @@ const Catalog = () => {
           <div className='flex md:flex-row flex-col min-h-screen relative' >
             <SideBar categs={categs} brands={brands} search={changeSearch} />
             <div className='w-full h-full min-h-screen'>
-              <View items={docsCopy} title={search[0]} />
+              <View items={docsCopy} title={search[0]} setCurrentPage={setCurrentPage} currentPage={currentPage} />
             </div>
           </div>
         )

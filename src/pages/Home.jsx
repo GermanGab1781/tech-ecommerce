@@ -19,7 +19,7 @@ const Home = () => {
   const [brandsPreview, setBrandsPreview] = useState(undefined);
 
   useEffect(() => {
-    /* window.scroll(0, 0) */
+    window.scroll(0, 0)
     const initialCategPreview = {};
     const initialBrandsPreview = {};
     const getAllDocs = async () => {

@@ -13,10 +13,10 @@ const SideBar = ({ categs, search, brands }) => {
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}
+    <motion.div
       className={mobileToggle
-        ? 'md:relative fixed md:w-[20%] md:top-0 top-4 w-3/4 z-20 flex bg-slate-800 flex-col h-full overflow-hidden mt-12 gap-y-3 md:min-h-screen h-35 border-2 border-black transition-all duration-300'
-        : 'md:relative fixed md:w-[20%] md:top-0 top-4 w-0 z-20 flex bg-slate-800 flex-col h-full overflow-hidden mt-12 gap-y-3 md:min-h-screen h-35 md:border-2 border-0 border-black transition-all duration-300'
+        ? 'md:relative fixed md:w-[20%] md:top-0 top-4 w-3/4 z-20 flex bg-slate-800 flex-col h-full overflow-hidden mt-12 gap-y-3 md:min-h-screen h-35 border-2 border-black md:border-t-orange-400 transition-all duration-300'
+        : 'md:relative fixed md:w-[20%] md:top-0 top-4 w-0 z-20 flex bg-slate-800 flex-col h-full overflow-hidden mt-12 gap-y-3 md:min-h-screen h-35 md:border-2 border-0 border-black md:border-t-orange-400 transition-all duration-300'
       }
     >
       {/* Content */}

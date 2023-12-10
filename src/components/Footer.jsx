@@ -3,7 +3,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { HiLocationMarker, HiReceiptRefund } from 'react-icons/hi'
 export default function Footer() {
   return (
-    <div className="relative flex md:flex-row bg-black text-white flex-col gap-y-5 py-5 place-content-evenly text-center md:text-3xl text-xl border-t-2 border-orange-400">
+    <div className="relative flex md:flex-row font-raleway bg-black text-white flex-col gap-y-5 py-5 place-content-evenly text-center md:text-3xl text-xl border-t-2 border-orange-400">
       <div className='h-full'>
         <span className='text-2xl md:text-3xl text-orange-400'>Contact</span>
         <div className="flex flex-col gap-y-2 pl-2 ml-7 text-start md:place-items-start place-items-center text-xl ">
