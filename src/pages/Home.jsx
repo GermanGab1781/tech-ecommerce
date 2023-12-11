@@ -129,7 +129,7 @@ const Home = () => {
         /* Loading page */
         : (
           <div className='relative bg-transparent h-screen w-full text-4xl text-center animate-pulse'>
-            <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 text-white'>Optimizing the digital aisles for your browsing pleasure...</span>
+            <span className='absolute md:top-1/4 top-[10%] left-1/2 transform -translate-x-1/2 text-white md:w-auto w-[95%]'>Optimizing the digital aisles for your browsing pleasure...</span>
           </div>
         )}
     </div>

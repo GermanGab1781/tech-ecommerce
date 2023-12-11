@@ -37,16 +37,16 @@ const ProductDetail = () => {
 
   return (
     <div className='min-h-screen bg-black'>
-      {product &&
-        <div className='md:grid md:grid-cols-2 flex flex-col md:min-h-screen md:mt-5 mt-10 md:w-[95%] h-fit bg-black text-white md:mx-auto text-center md:place-content-center'>
+      {product ? (
+        <div className='md:grid md:grid-cols-2 flex flex-col md:min-h-screen   md:w-[95%] h-fit bg-black text-white md:mx-auto text-center md:place-content-center'>
           {/* Name */}
           <h1 className='md:col-start-2 md:text-center text-4xl p-5 font-semibold'>{product.info.name}</h1>
           {/* Carousel */}
-          <span className='md:min-h-screen'>
+          <span className='md:min-h-[50vh] md:max-h-screen mb-5'>
             <ReactImageGallery items={images} additionalClass={'bg-black'} thumbnailPosition={isMobile ? "bottom" : "left"} />
           </span>
           {/* Info */}
-          <div className='flex flex-col md:col-start-2 md:border-t-0 border-t md:ml-4 border-orange-400'>
+          <div className='flex flex-col md:col-start-2 md:border-t-0 border-t md:ml-4 mb-10 border-orange-400'>
             <span className='flex flex-col'>
               <span className=' text-2xl'>
                 <span className='text-orange-400'>Brand:</span> {product.info.brand}<br />
@@ -59,17 +59,20 @@ const ProductDetail = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laborum minima quibusdam modi sint dicta, excepturi quasi voluptates iure esse cumque iste sapiente laboriosam dignissimos sunt odit. Amet, aperiam error? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repellendus repudiandae, labore quas alias consequatur aliquid maiores sit nam dolorem quibusdam necessitatibus totam neque pariatur in blanditiis voluptatum repellat tenetur!
             </span>
             {/* Buttons */}
-            <span onClick={() => addToCart(product)} className='border border-orange-400 select-none cursor-pointer bg-slate-800 hover:bg-orange-400 text-xl p-5 md:col-start-2 w-[60%] mx-auto mb-4 md:mt-10'>Add to Cart</span>
-            <span onClick={() => addToCart(product)} className='border border-orange-400 select-none cursor-pointer bg-slate-800 hover:bg-orange-400 text-xl p-5 md:col-start-2 w-[60%] mx-auto'>Buy Now</span>
+            <span onClick={() => addToCart(product)} className='border border-blue-400 select-none cursor-pointer bg-slate-800 hover:bg-blue-900 text-xl p-5 md:col-start-2 w-[60%] mx-auto mb-4 mt-10'>Add to Cart</span>
+            <span onClick={() => addToCart(product)} className='border border-green-400 select-none cursor-pointer bg-slate-800 hover:bg-green-500 text-xl p-5 md:col-start-2 w-[60%] mx-auto'>Buy Now</span>
           </div>
           <div className='col-span-2 flex flex-col border-y border-orange-400'>
-            <h1 className='text-3xl font-semibold'>Continue Exploring our Catalog</h1>
-            <span className='p-10 flex md:flex-row flex-col place-items-center'>
-              <NavLink className='border border-orange-400 select-none cursor-pointer bg-slate-800 hover:bg-orange-400 text-xl w-[60%] p-5 md:mr-5' to={`/catalog/brand/${product.info.brand}`}>More of {product.info.brand}</NavLink>
-              <NavLink className='border border-orange-400 select-none cursor-pointer bg-slate-800 hover:bg-orange-400 text-xl w-[60%] p-5' to={`/catalog/category/${product.info.category}`}>More of {product.info.category}</NavLink>
+            <h1 className='text-3xl font-semibold pt-2'>Continue Exploring our Catalog</h1>
+            <span className='p-10 flex md:flex-row flex-col place-items-center whitespace-nowrap md:gap-y-0 gap-y-2'>
+              <NavLink className='border border-orange-400 select-none cursor-pointer bg-slate-800 hover:bg-blue-950 text-xl w-[60%] p-5 md:mr-5' to={`/catalog/brand/${product.info.brand}`}>More of {product.info.brand}</NavLink>
+              <NavLink className='border border-orange-400 select-none cursor-pointer bg-slate-800 hover:bg-blue-950 text-xl w-[60%] p-5' to={`/catalog/category/${product.info.category}`}>More of {product.info.category}</NavLink>
             </span>
           </div>
-        </div>
+        </div>)
+        : (<div className='relative bg-transparent w-full h-screen text-4xl text-center animate-pulse'>
+          <span className='absolute md:top-1/4 top-[15%] left-1/2 transform -translate-x-1/2 text-white md:w-auto w-[95%]'>Product details are on their way...</span>
+        </div>)
       }
     </div>
   );

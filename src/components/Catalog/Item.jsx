@@ -10,11 +10,11 @@ const Item = ({ info }) => {
     <div className='relative group overflow-hidden'>
       <NavLink to={"/product/" + info.id}>
         <motion.div className='flex flex-col border-2 border-blue-900 group-hover:border-orange-400 md:m-2 mx-3 w-60 h-72 md:w-96 md:h-96 delay-75'>
-          <img src={info.images[0].Url} className='h-[80%] bg-white border-b-2 border-blue-300' />
-          <div className='flex flex-col text-center bg-slate-100'>
+          <img src={info.images[0].Url} className='h-[65%] bg-white border-b-2 border-blue-300' />
+          <div className='flex flex-col text-center place-content-center bg-slate-100 min-h-[35%] py-1'>
             <span className='text-2xl md:text-4xl font-dosis'>{info.info.name}</span>
             <span className='text-xl text-green-600'>${info.info.price}</span>
-            <span>{info.info.brand}</span>
+            <span className=''>{info.info.brand}</span>
           </div>
         </motion.div >
       </NavLink>

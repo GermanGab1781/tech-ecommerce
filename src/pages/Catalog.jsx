@@ -72,7 +72,7 @@ const Catalog = () => {
         :
         (
           <div className='relative bg-transparent w-full h-screen text-4xl text-center animate-pulse'>
-            <span className='absolute top-1/4 left-1/2 transform -translate-x-1/2 text-white'>Fine-tuning our digital storefront for an exceptional experience...</span>
+            <span className='absolute md:top-1/4 top-[10%] left-1/2 transform -translate-x-1/2 text-white md:w-auto w-[95%]'>Fine-tuning our digital storefront for an exceptional experience...</span>
           </div>
         )}
     </div>
