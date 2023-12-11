@@ -48,7 +48,7 @@ const View = ({ items, title, setCurrentPage, currentPage }) => {
       <motion.div key={title} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className='h-[20%] text-5xl text-center text-white '>
         {title === undefined ? <span className=''>Our Products</span> : <span className=''>{title}</span>}
       </motion.div>
-      <Pagination itemsPerPage={4} data={items} />
+      <Pagination itemsPerPage={6} data={items} />
     </motion.div >
   );
 }
