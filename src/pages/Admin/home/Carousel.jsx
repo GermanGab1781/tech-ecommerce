@@ -212,6 +212,7 @@ const Carousel = () => {
 
   return (
     <div className='text-center text-white '>
+      <NavLink className='fixed md:left-5 left-0 p-1 bg-slate-800 border-orange-400 border text-2xl z-20 text-white' to="/Admin">Go back</NavLink>
       {/* First Image */}
       <form id="first" className='flex flex-col gap-y-10 place-items-center' onSubmit={handleUpdate}>
         <div>

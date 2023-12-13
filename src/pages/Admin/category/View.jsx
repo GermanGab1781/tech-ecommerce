@@ -18,11 +18,13 @@ const View = () => {
   }, [])
 
   return (
-    <div>
-      <NavLink className='fixed left-5' to="/Admin">Go back</NavLink>
+    <div className='flex flex-col  min-h-screen'>
+      <NavLink className='fixed md:left-5 left-0 p-1 bg-slate-800 border-orange-400 border text-2xl z-20 text-white' to="/Admin">Go back</NavLink>
+      <h1 className='border-b-4 border-green-400 text-5xl text-white mx-auto'>Categories</h1>
       {categories
         ?
-        <motion.div className='flex flex-wrap w-1/2 m-auto gap-10 border place-content-center'>
+        <motion.div className='flex flex-wrap w-1/2 mx-auto mt-10 gap-10 place-content-center'>
+
           {categories.map((category, index) => {
             return (
               <Item key={index} info={category.data()} id={category.id} />

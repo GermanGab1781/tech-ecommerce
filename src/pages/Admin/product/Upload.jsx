@@ -72,8 +72,14 @@ const Upload = () => {
     } else if ((product.price === '') || (product.price === undefined)) {
       Swal.fire({ icon: 'error', title: 'Price is missing' })
       return
+    } else if ((product.price < 0)) {
+      Swal.fire({ icon: 'error', title: 'Price must be greater than 0' })
+      return
     } else if ((product.category === '') || (product.category === undefined)) {
       Swal.fire({ icon: 'error', title: 'Category is missing' })
+      return
+    } else if ((product.description === '') || (product.description === undefined)) {
+      Swal.fire({ icon: 'error', title: 'Description is missing' })
       return
     }
     const customMsg = product.name + ' Uploaded';
@@ -81,7 +87,7 @@ const Upload = () => {
       .then((res) => {
         setDoc((newDocProducto), { id: newDocProducto.id, info: product, images: res, timestamp: serverTimestamp() })
           .then(() => {
-            setProduct({ name: '', brand: '', price: '', category: '', })
+            setProduct({ name: '', brand: '', price: '', category: '', description: '' })
             setImages([])
           })
       })
@@ -144,7 +150,6 @@ const Upload = () => {
     if (lastDotIndex !== -1) {
       const fileExtension = fileName.substring(lastDotIndex + 1).toLowerCase();
       if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'bmp' || fileExtension === 'webp' || fileExtension === 'svg') {
-
         let indexImg;
         if (images.length > 0) {
           indexImg = images[images.length - 1].index + 1;
@@ -183,24 +188,27 @@ const Upload = () => {
   }, [])
 
   return (
-    <div className='flex flex-col place-items-center gap-y-10 py-5'>
-      <NavLink className='fixed left-5' to="/Admin">Go back</NavLink>
-      <h1 className='border-b-4 border-green-400 text-5xl'>New Product</h1>
-      <form onSubmit={handleUpload} className='flex flex-col w-[80%] place-items-center text-xl'>
+    <div className='flex flex-col place-items-center gap-y-10 py-5 bg-black text-white '>
+      <NavLink className='fixed md:left-5 left-0 p-1 bg-slate-800 border-orange-400 border text-2xl text-white' to="/Admin">Go back</NavLink>
+      <h1 className='border-b-4 mt-5 border-green-400 text-5xl'>New Product</h1>
+      <form onSubmit={handleUpload} className='flex flex-col md:w-[40%] w-[95%] place-items-center text-xl'>
         {/* Name */}
-        <label>Name</label>
-        <input className='border rounded-xl w-[40%]' onChange={handleInput} value={product.name} name='name' type='text' required />
+        <label className='place-self-start'>Name</label>
+        <input className='border rounded-xl w-full text-black mb-5' onChange={handleInput} value={product.name} name='name' type='text' required />
         {/* Brand */}
-        <label>Brand</label>
-        <input className='border rounded-xl w-[40%]' onChange={handleInput} value={product.brand} name='brand' type='text' required />
+        <label className='place-self-start'>Brand</label>
+        <input className='border rounded-xl w-full text-black mb-5' onChange={handleInput} value={product.brand} name='brand' type='text' required />
         {/* Price */}
-        <label >Price</label>
-        <input className='border rounded-xl w-[40%]' onChange={handleInput} value={product.price} name='price' type='number' required />
-        <div className='flex flex-col w-[40%]'>
+        <label className='place-self-start'>Price</label>
+        <input className='border rounded-xl w-full text-green-600 mb-5 ' onChange={handleInput} value={product.price} name='price' type='number' required />
+        {/* Description */}
+        <label className='place-self-start'>Description</label>
+        <textarea className='border rounded-xl w-full text-black mb-5' onChange={handleInput} value={product.description} rows={10} cols={5} name='description' type='text' required />
+        <div className='flex flex-col w-full'>
           {/* Category */}
-          <label className='m-auto'>Category</label>
-          <div className='flex place-content-between w-full my-7 gap-y-2 font-bold'>
-            <select className='text-center w-[75%]' onChange={handleInput} value={product.category} name='category' >
+          <label className=''>Category</label>
+          <div className='flex place-content-between w-full my-6 gap-y-2 font-bold'>
+            <select className='text-center w-[75%] bg-slate-800' onChange={handleInput} value={product.category} name='category' >
               <option value="">Select</option>
               {(categories && pass) &&
                 categories.map((category, index) => {
@@ -218,7 +226,7 @@ const Upload = () => {
         </div>
         {/* Images */}
         <label className='text-2xl font-bold'>Images (1-5)</label>
-        <div className=' flex flex-col place-items-center border border-teal-500 p-20 w-[75%]'>
+        <div className=' flex flex-col place-items-center border border-teal-500 p-20 w-[90vw]'>
           <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" className='border' type="file" onChange={changeInput} />
           <div className='flex flex-row flex-wrap place-content-center gap-x-5 gap-y-7 p-5'>
             {images.map((image) => {
@@ -235,8 +243,8 @@ const Upload = () => {
 
 
         {pass
-          ? <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
-          : <button className='border w-1/2 border-black p-5 hover:bg-red-600 text-xl font-bold bg-red-900' onClick={noCategoriesNotice}>Upload</button>
+          ? <button className='border md:w-[70%] w-1/2 border-orange-400 p-5 mt-5 hover:bg-slate-800 hover:text-white text-xl font-bold ' type='submit'>Upload</button>
+          : <button className='border md:w-[70%] w-1/2 border-orange-400 p-5 mt-5 text-xl font-bold bg-red-900' onClick={noCategoriesNotice}>Upload</button>
         }
 
       </form>

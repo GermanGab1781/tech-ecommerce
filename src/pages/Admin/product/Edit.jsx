@@ -214,86 +214,88 @@ const Edit = () => {
   };
 
   return (
-    <div className='flex place-content-center'>
-      <NavLink className='fixed left-5' to="/admin/view/product">Go back</NavLink>
+    <div className='flex place-content-center text-white bg-black'>
+      <NavLink className='fixed md:left-5 left-0 p-1 bg-slate-800 border-orange-400 border text-2xl text-white' to="/admin/view/product">Go back</NavLink>
       {product && categories
-        ? <div>
-          {product.info.name}
-          <div className='flex flex-col place-items-center gap-y-10 py-5'>
-            <h1 className='border-b-4 border-green-400 text-5xl'>Edit Product</h1>
-            <form onSubmit={handleUpdate} className='flex flex-col w-[80%] place-items-center text-xl'>
-              {/* Name */}
-              <label>Name</label>
-              <input className='border rounded-xl w-[40%]' onChange={handleInput} defaultValue={product.info.name} name='name' type='text' required />
-              {/* Brand */}
-              <label>Brand</label>
-              <input className='border rounded-xl w-[40%]' onChange={handleInput} defaultValue={product.info.brand} name='brand' type='text' required />
-              {/* Price */}
-              <label >Price</label>
-              <input className='border rounded-xl w-[40%]' onChange={handleInput} defaultValue={product.info.price} name='price' type='number' required />
-              <div className='flex flex-col w-[40%]'>
-                {/* Category */}
-                <label className='m-auto'>Category</label>
-                <div className='flex place-content-between w-full my-7 gap-y-2 font-bold'>
-                  <select className='text-center w-[75%]' onChange={handleInput} defaultValue={product.info.category} name='category' >
-                    <option value="">Select</option>
-                    {(categories && pass) &&
-                      categories.map((category, index) => {
-                        return (
-                          <option key={index} value={category.data().name}>{category.data().name}</option>
-                        )
-                      })
-                    }
-                  </select>
-                  {/* Redirect to New Category */}
-                  <div onClick={redirectNotice} className='flex h-16 w-16 border bg-green-500 ml-1 cursor-pointer rounded-full' >
-                    <span className='m-auto font-2xl font-bold text-white'>New</span>
-                  </div>
+        ?
+        <div className='flex flex-col place-items-center gap-y-10 py-5'>
+          <h1 className='border-b-4 border-green-400 text-5xl'>Edit Product</h1>
+          <h2 className='border-b-4 border-green-400 text-3xl'>{product.info.name}</h2>
+          <form onSubmit={handleUpdate} className='flex flex-col md:w-[44%] w-[99%] place-items-center text-xl'>
+            {/* Name */}
+            <label className='place-self-start'>Name</label>
+            <input className='border rounded-xl w-full text-black mb-5' onChange={handleInput} defaultValue={product.info.name} name='name' type='text' required />
+            {/* Brand */}
+            <label className='place-self-start'>Brand</label>
+            <input className='border rounded-xl w-full text-black mb-5' onChange={handleInput} defaultValue={product.info.brand} name='brand' type='text' required />
+            <label className='place-self-start'>Description</label>
+            <textarea className='border rounded-xl w-full text-black mb-5' onChange={handleInput} value={product.info.description} rows={10} cols={1} name='description' type='text' required />
+            {/* Price */}
+            <label className='place-self-start' >Price</label>
+            <input className='border rounded-xl w-full text-green-600 mb-5' onChange={handleInput} defaultValue={product.info.price} name='price' type='number' required />
+            <div className='flex flex-col w-full'>
+              {/* Category */}
+              <label>Category</label>
+              <div className='flex place-content-between w-full my-7 gap-y-2 font-bold'>
+                <select className='text-center w-[75%]' onChange={handleInput} defaultValue={product.info.category} name='category' >
+                  <option value="">Select</option>
+                  {(categories && pass) &&
+                    categories.map((category, index) => {
+                      return (
+                        <option key={index} value={category.data().name}>{category.data().name}</option>
+                      )
+                    })
+                  }
+                </select>
+                {/* Redirect to New Category */}
+                <div onClick={redirectNotice} className='flex h-16 w-16 border bg-green-500 ml-1 cursor-pointer rounded-full' >
+                  <span className='m-auto font-2xl font-bold text-white'>New</span>
                 </div>
               </div>
+            </div>
 
-              {/* Images */}
-              {/* Already uploaded Images */}
-              <div className='my-12'>
-                <label className='text-2xl font-bold '>{product.info.name} images</label>
-                <div className='flex gap-x-5 place-content-center'>
-                  {images.map((image, index) => {
-                    return (
-                      <div key={index}>
-                        <img className='w-40 h-40' src={image.Url} alt='Loading' />
-                        <span className='cursor-pointer bg-red-600 p-5 font-bold' onClick={() => deleteImage(image.path)}>DELETE</span>
-                      </div>
-                    )
-                  })}
-                </div>
+            {/* Images */}
+            {/* Already uploaded Images */}
+            <div className='flex flex-col my-12'>
+              <label className='text-2xl font-bold mx-auto'> Already Uploaded Images</label>
+              <div className='flex flex-wrap mt-5  gap-5 gap-y-16 place-content-center'>
+                {images.map((image, index) => {
+                  return (
+                    <div className='relative' key={index}>
+                      <img className='w-40 h-40' src={image.Url} alt='Loading' />
+                      <span className='absolute -bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer bg-red-600 p-5 font-bold' onClick={() => deleteImage(image.path)}>DELETE</span>
+                    </div>
+                  )
+                })}
               </div>
+            </div>
 
-              {/* Add more Images */}
-              <label className='text-2xl font-bold'>Images (1-5)</label>
-              <div className=' flex flex-col place-items-center border border-teal-500 p-20 w-[75%]'>
-                <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" className='border' type="file" onChange={changeInput} />
-                <div className='flex flex-row flex-wrap place-content-center gap-x-5 gap-y-7 p-5'>
-                  {newImages.map((image) => {
-                    return (
-                      <div className='relative w-fit h-fit' key={image.index}>
-                        <img className='h-32 w-32' src={image.url} alt='Cargando' />
-                        <button className='absolute -bottom-3 bg-slate-500' onClick={deleteImg.bind(this, image.index)}>BORRAR IMAGEN</button>
-                        <span className='absolute bg-green-700 p-1 -top-2 -right-2'>{image.index + 1}</span>
-                      </div>
-                    )
-                  })}
-                </div>
+            {/* Add more Images */}
+            <label className='text-2xl font-bold mt-2'>Images (1-5)</label>
+            <div className=' flex flex-col place-items-center border border-teal-500 p-20 w-[90vw]'>
+              <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" className='border' type="file" onChange={changeInput} />
+              <div className='flex flex-row flex-wrap place-content-center gap-x-5 gap-y-7 p-5'>
+                {newImages.map((image) => {
+                  return (
+                    <div className='relative w-fit h-fit' key={image.index}>
+                      <img className='h-32 w-32' src={image.url} alt='Cargando' />
+                      <button className='absolute -bottom-3 bg-slate-500' onClick={deleteImg.bind(this, image.index)}>BORRAR IMAGEN</button>
+                      <span className='absolute bg-green-700 p-1 -top-2 -right-2'>{image.index + 1}</span>
+                    </div>
+                  )
+                })}
               </div>
+            </div>
 
 
-              {pass
-                ? <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
-                : <button className='border w-1/2 border-black p-5 hover:bg-red-600 text-xl font-bold bg-red-900' onClick={noCategoriesNotice}>Upload</button>
-              }
+            {pass
+              ? <button className='border w-1/2 border-black p-5 hover:bg-black hover:text-white text-xl font-bold ' type='submit'>Upload</button>
+              : <button className='border w-1/2 border-black p-5 hover:bg-red-600 text-xl font-bold bg-red-900' onClick={noCategoriesNotice}>Upload</button>
+            }
 
-            </form>
-          </div>
+          </form>
         </div>
+
         : <div></div>
       }
     </div>

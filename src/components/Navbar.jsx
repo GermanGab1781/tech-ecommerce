@@ -12,9 +12,9 @@ export default function Navbar() {
   const [toggleCart, setToggleCart] = useState(false);
 
   return (
-    <motion.div className="fixed flex z-40 font-raleway bg-black text-white border-y-2 border-orange-400 w-screen h-16 place-content-between">
+    <motion.div className="fixed flex z-40 bg-black text-white  w-screen h-16 place-content-between font-dosis">
       {/* Brand */}
-      <NavLink className="my-auto" to="/"><span className="text-3xl">GogoGadget</span></NavLink>
+      <NavLink className="my-auto" to="/"><span className="text-3xl pl-5">GogoGadget</span></NavLink>
       {/* Nav Items */}
       <div className='flex gap-x-3 my-auto mr-7'>
         <NavLink className=" transition-all delay-75" to="/Catalog">Catalog</NavLink>

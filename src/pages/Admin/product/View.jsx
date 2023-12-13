@@ -45,8 +45,9 @@ const View = () => {
   }
 
   return (
-    <div>
-      <NavLink className='fixed left-5' to="/Admin">Go back</NavLink>
+    <div className='flex flex-col'>
+      <NavLink className='fixed md:left-5 left-0 p-1 bg-slate-800 border-orange-400 border text-2xl z-20 text-white' to="/Admin">Go back</NavLink>
+      <h1 className='border-b-4 border-green-400 text-5xl text-white mx-auto'>Products</h1>
       {products
         ? <div className='flex flex-wrap py-10 gap-10 place-content-center'>
           {products.map((item, index) => {

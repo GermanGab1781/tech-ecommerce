@@ -29,7 +29,7 @@ const SideBar = ({ categs, search, brands }) => {
         }>
           {categs.map((categ, index) => {
             return (
-              <div key={index} className='border-y border-blue-900 hover:border-orange-400 text-xl text-center hover:font-bold font-medium  text-slate-200 cursor-pointer select-none'
+              <div key={index} className='border-y border-orange-400 -mb-[1px] hover:mb-auto hover:border-orange-400 text-xl text-center hover:font-bold font-medium  text-slate-200 cursor-pointer select-none'
                 onClick={() => handleClick(categ.data().name, "category")}>
                 {categ.data().name}
               </div>
@@ -43,7 +43,7 @@ const SideBar = ({ categs, search, brands }) => {
         }>
           {brands.map((brand, index) => {
             return (
-              <div key={index} className='border-y border-blue-900 hover:border-orange-400 text-xl text-center hover:font-bold font-medium  text-slate-200 cursor-pointer select-none'
+              <div key={index} className='border-y border-orange-400 -mb-[1px] hover:border-orange-400 text-xl text-center hover:font-bold font-medium  text-slate-200 cursor-pointer select-none'
                 onClick={() => handleClick(brand, "brand")}>
                 {brand}
               </div>

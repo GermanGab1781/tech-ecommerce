@@ -23,7 +23,7 @@ const ProductDetail = () => {
     })
     return result
   }
-  useEffect(() => { /* window.scroll(0, 1); */ }, [])
+  useEffect(() => { window.scroll(0, 1); }, [])
 
   useEffect(() => {
     const getProductDoc = async () => {
@@ -56,7 +56,7 @@ const ProductDetail = () => {
             </span>
             <span className=' flex flex-col px-4 text-lg border-y border-orange-400 py-1 my-1'>
               <span className='text-blue-400 text-3xl'>Description</span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laborum minima quibusdam modi sint dicta, excepturi quasi voluptates iure esse cumque iste sapiente laboriosam dignissimos sunt odit. Amet, aperiam error? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repellendus repudiandae, labore quas alias consequatur aliquid maiores sit nam dolorem quibusdam necessitatibus totam neque pariatur in blanditiis voluptatum repellat tenetur!
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur non, vitae perspiciatis in tempora magni tempore, autem ad, nam harum officiis corporis soluta voluptatibus aut facere nihil quae ab voluptatum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil, laboriosam provident obcaecati voluptatibus facilis impedit omnis. Accusamus, sapiente. Deserunt nulla dolore praesentium consectetur corporis consequatur doloribus modi vero quidem? Aliquid!
             </span>
             {/* Buttons */}
             <span onClick={() => addToCart(product)} className='border border-blue-400 select-none cursor-pointer bg-slate-800 hover:bg-blue-900 text-xl p-5 md:col-start-2 w-[60%] mx-auto mb-4 mt-10'>Add to Cart</span>
