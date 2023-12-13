@@ -65,7 +65,7 @@ const Home = () => {
   /* const isMobile = useMediaQuery({ query: "(max-width: 800px)" }); */
 
   return (
-    <div className='font-medium md:mb-[30%] mb-[130%] bg-slate-800'>
+    <div className='font-medium bg-slate-800'>
       {isDataLoaded ? (
         <motion.div className='relative min-h-screen bg-slate-800'>
           {/* Carousel */}
@@ -75,7 +75,7 @@ const Home = () => {
               <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-800 via-transparent to-transparent"></div>
             </div>
           } showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={'image-galleryHome'} />
-          <motion.div className='bg-transparent relative md:top-[80vh] top-[60vh] flex flex-col'>
+          <motion.div className='bg-transparent relative mt-[5vh] flex flex-col'>
             {/* Latest products */}
             <div className='mb-5'>
               <h1 className=' m-auto text-4xl mb-2 text-center text-white p-2 bg-black border-2 border-black'>Latest</h1>
