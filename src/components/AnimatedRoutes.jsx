@@ -43,6 +43,7 @@ const AnimatedRoutes = () => {
         {/* product */}
         <Route path='/admin/upload/product' element={<PrivateRoute><UploadProduct /></PrivateRoute>} />
         <Route path='/admin/view/product' element={<PrivateRoute><ViewProducts /></PrivateRoute>} />
+        <Route path='/admin/view/product/:id' element={<PrivateRoute><ViewProducts /></PrivateRoute>} />
         <Route path='/admin/edit/product/:id' element={<PrivateRoute><EditProduct /></PrivateRoute>} />
         {/* category */}
         <Route path='/admin/upload/category' element={<PrivateRoute><UploadCategory /></PrivateRoute>} />

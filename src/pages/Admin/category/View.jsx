@@ -48,7 +48,7 @@ const View = () => {
         cancelButtonText: 'Cancel',
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate('/admin/view/product');
+          navigate(`/admin/view/product/${name}`);
         }
       });
     } else {
