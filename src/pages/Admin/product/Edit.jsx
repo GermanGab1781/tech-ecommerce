@@ -1,11 +1,10 @@
-import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { db, storage } from '../../../firebase';
 import { v4 } from 'uuid';
 import Swal from 'sweetalert2';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
-const newDocProducto = doc(collection(db, "products/ProductsInfo/All"))
 
 const Edit = () => {
 
@@ -70,7 +69,7 @@ const Edit = () => {
             resolve(Urls);
           })
           .catch((error) => {
-            // Handle errors from the Promise.all or individual uploads
+            console.log(error)
             reject(error);
           });
       }
@@ -78,15 +77,15 @@ const Edit = () => {
   }
   const handleUpdate = e => {
     e.preventDefault()
-    Swal.fire({ icon: "info", title: "Subiendo cambios", text: "Porfavor espere", showConfirmButton: false })
+    Swal.fire({ icon: "info", title: "Uploading", text: "Please wait", showConfirmButton: false })
     if ((product.info.name === '') || (product.info.name === undefined)) {
-      Swal.fire({ icon: 'error', title: 'Falta el nombre' })
+      Swal.fire({ icon: 'error', title: 'Name missing' })
       return
     } else if ((product.info.brand === '') || (product.info.brand === undefined)) {
-      Swal.fire({ icon: 'error', title: 'Falta la Descripcion' })
+      Swal.fire({ icon: 'error', title: 'Description missing' })
       return
     } else if ((product.info.price === '') || (product.info.price === undefined)) {
-      Swal.fire({ icon: 'error', title: 'Falta la stock' })
+      Swal.fire({ icon: 'error', title: 'Stock missing' })
       return
     } else if (newImages.length > 0) {
       uploadImages().then((res) => {
@@ -95,19 +94,16 @@ const Edit = () => {
           info: product.info,
           images: newImgsSrc
         }).then(() => {
-          Swal.fire({ icon: 'success', title: 'Producto actualizado', text: 'ir a catalogo para ver cambios' })
+          Swal.fire({ icon: 'success', title: 'Producto updated', text: 'check catalog to see changes' })
         })
       })
     } else {
-      console.log(product.info)
       updateDoc((thisDocRef), {
         info: product.info
       }).then(() => {
         window.scrollTo(0, 0);
         navigate('/admin/view/product');
-
         Swal.fire({ icon: 'success', title: product.info.name + ' Updated', text: 'Redirecting' })
-
       })
     }
 
