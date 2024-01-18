@@ -20,8 +20,9 @@ import EditProduct from '../pages/Admin/product/Edit';
 import ViewProducts from '../pages/Admin/product/View';
 /* category */
 import UploadCategory from '../pages/Admin/category/Upload';
-import EditCategory from '../pages/Admin/category/Edit';
 import ViewCategories from '../pages/Admin/category/View';
+
+import Checkout from '../pages/Checkout';
 
 
 const AnimatedRoutes = () => {
@@ -35,6 +36,8 @@ const AnimatedRoutes = () => {
         {/* Catalog */}
         <Route path='/catalog' element={<Catalog />} />
         <Route path='/catalog/:type/:id' element={<Catalog />} />
+        {/* Checkout */}
+        <Route path='/cart' element={<Checkout />} />
         {/* Admin */}
         <Route path='/admin/login' element={<AlreadyLogin><Login /></AlreadyLogin>} />
         <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
@@ -48,7 +51,6 @@ const AnimatedRoutes = () => {
         {/* category */}
         <Route path='/admin/upload/category' element={<PrivateRoute><UploadCategory /></PrivateRoute>} />
         <Route path='/admin/view/category' element={<PrivateRoute><ViewCategories /></PrivateRoute>} />
-        <Route path='/admin/edit/category/:id' element={<PrivateRoute><EditCategory /></PrivateRoute>} />
       </Routes>
     </AnimatePresence>
   );

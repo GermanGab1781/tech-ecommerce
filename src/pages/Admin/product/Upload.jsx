@@ -12,7 +12,6 @@ const Upload = () => {
   const [categories, setCategories] = useState(undefined)
   const [images, setImages] = useState([])
   const [pass, setPass] = useState(false)
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const newDocProducto = doc(collection(db, "products/ProductsInfo/All"))
 
@@ -27,7 +26,6 @@ const Upload = () => {
     const id = e.target.name
     const value = e.target.value
     setProduct({ ...product, [id]: value })
-    console.log(product)
   }
 
   const uploadImages = (customMsg) => {
@@ -177,7 +175,6 @@ const Upload = () => {
       const q = collection(db, "/products/Categories/list")
       const data = await getDocs(q)
       setCategories(data.docs)
-      setLoading(false)
       if (data.docs.length === 0) {
         setPass(false)
       } else {

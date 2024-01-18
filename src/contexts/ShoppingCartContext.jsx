@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 export const CartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
-  // Retrieve data from localStorage on component mount
+  /* Retrieve data from localStorage on component mount */
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem('cart');
     return storedCart ? JSON.parse(storedCart) : [];
@@ -20,13 +20,13 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const addToCart = (info) => {
     const updatedCart = [...cart];
-    const foundItem = updatedCart.find(item => item.data.id === info.id);
+    const foundItem = updatedCart.find(item => item.info.id === info.id);
     if (foundItem) {
       foundItem.quantity += 1; // Increment quantity by 1 if the ID exists
       setQuantity(quantity + 1)
       Swal.fire({ title: info.info.name, text: 'Added one more to Cart', icon: 'success' })
     } else {
-      updatedCart.push({ data: { id: info.id, name: info.info.name, image: info.images[0].Url, price: info.info.price }, quantity: 1 }); // Add new item with quantity 1
+      updatedCart.push({ info: { id: info.id, name: info.info.name, image: info.images[0].Url, price: info.info.price }, id: info.id, quantity: 1 }); // Add new item with quantity 1
       setQuantity(quantity + 1)
       Swal.fire({ title: info.info.name, text: 'Added to Cart', icon: 'success' })
     }
@@ -35,14 +35,12 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const removeFromCart = (id) => {
     let updatedCart = [...cart];
-    const foundItem = updatedCart.find(item => item.data.id === id);
-    console.log(foundItem)
-    console.log(id)
+    const foundItem = updatedCart.find(item => item.info.id === id);
     if (foundItem && foundItem.quantity > 1) {
       foundItem.quantity = foundItem.quantity - 1; // Decrement quantity by 1 if quantity > 1
       setQuantity(quantity - 1)
     } else {
-      updatedCart = updatedCart.filter(item => item.data.id !== id)
+      updatedCart = updatedCart.filter(item => item.info.id !== id)
       setQuantity(quantity - 1)
     }
     setCart(updatedCart);
@@ -53,7 +51,7 @@ export const ShoppingCartProvider = ({ children }) => {
     /* Update total price */
     let totalPrice = 0
     cart.forEach(element => {
-      totalPrice += element.quantity * element.data.price
+      totalPrice += element.quantity * element.info.price
     });
     setTotal(totalPrice)
     localStorage.setItem('cart', JSON.stringify(cart));
