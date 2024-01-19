@@ -53,7 +53,7 @@ const SideBar = ({ categs, search, brands }) => {
       </span>
       {/* Mobile Toggle button */}
       <span className={mobileToggle
-        ? 'md:absolute md:invisible top-[8%] fixed right-4 select-none border rounded-xl border-red-900 p-3 bg-red-300 transition-all duration-300' : 'md:absolute top-[15%] md:invisible  fixed right-2 select-none border rounded-xl border-black p-2 bg-blue-300 transition-all duration-300'}
+        ? 'md:absolute md:invisible top-[10%] fixed right-4 select-none border rounded-md border-red-900 p-3 bg-red-400 transition-all duration-300' : 'md:absolute top-[8%] md:invisible  fixed right-2 select-none border rounded-md border-black p-2 bg-slate-300 transition-all duration-300'}
         onClick={() => setMobileToggle(!mobileToggle)}>{mobileToggle ? "Close" : "Filter"}</span>
     </motion.div>
   );

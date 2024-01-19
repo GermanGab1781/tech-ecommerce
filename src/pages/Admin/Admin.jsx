@@ -11,17 +11,17 @@ const Admin = () => {
   return (
     <div className='flex flex-col border-b-2 border-orange-400 h-screen gap-y-8 py-16 text-center text-white bg-black'>
       <span className='text-4xl'>Admin</span>
-      <div className='flex justify-center gap-x-3 ' >
-        <NavLink className='border w-1/2 border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/upload/product">
+      <div className='flex justify-center gap-x-3' >
+        <NavLink className='border w-1/2 my-auto border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/upload/product">
           New product</NavLink>
-        <NavLink className='border md:w-1/4 w-1/3 group border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/view/product">
+        <NavLink className='border md:w-1/4 w-[45%] group border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/view/product">
           View/<span className='text-green-400 '>Edit</span>/<span className='text-red-400'>Delete</span></NavLink>
       </div>
 
       <div className='flex justify-center gap-x-3 ' >
-        <NavLink className='border w-1/2 border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/upload/category">
+        <NavLink className='border w-1/2 my-auto border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/upload/category">
           New Category</NavLink>
-        <NavLink className='border md:w-1/4 w-1/3 group border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/view/category">
+        <NavLink className='border md:w-1/4 w-[45%] group border-orange-400 p-5 text-2xl hover:bg-slate-800 hover:text-white' to="/admin/view/category">
           View/<span className='text-green-400 '>Edit</span>/<span className='text-red-400'>Delete</span></NavLink>
       </div>
 
