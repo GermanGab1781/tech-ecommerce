@@ -27,6 +27,15 @@ const Upload = () => {
     const value = e.target.value
     setProduct({ ...product, [id]: value })
   }
+  const copySymbol = () => {
+    const tempInput = document.createElement('input');
+    tempInput.value = '|';
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    Swal.fire({ title: 'Symbol copied!!', text: 'You can use Ctrl+V to paste it or Second Click then Paste' })
+  };
 
   const uploadImages = (customMsg) => {
     return new Promise((resolve, reject) => {
@@ -200,6 +209,15 @@ const Upload = () => {
         <input className='border rounded-xl w-full text-green-600 mb-5 ' onChange={handleInput} value={product.price} name='price' type='number' required />
         {/* Description */}
         <label className='place-self-start'>Description</label>
+        <span className='flex flex-col border my-2 p-2 bg-slate-700 text-sm'>
+          <p className='text-orange-400'>If you want to do a line break use symbol <span className='text-md'>" | "</span></p>
+          <p>For example "1Example text | 2Example" would create this:</p>
+          <p>"1Example text"</p>
+          <p>"2Example"</p>
+          <div className='border p-1 m-auto bg-slate-900 border-orange-400 cursor-pointer' onClick={copySymbol}>
+            Copy Pipe Symbol (|)
+          </div>
+        </span>
         <textarea className='border rounded-xl w-full text-black mb-5' onChange={handleInput} value={product.description} rows={10} cols={5} name='description' type='text' required />
         <div className='flex flex-col w-full'>
           {/* Category */}

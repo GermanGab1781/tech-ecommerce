@@ -106,6 +106,15 @@ const Edit = () => {
     }
 
   }
+  const copySymbol = () => {
+    const tempInput = document.createElement('input');
+    tempInput.value = '|';
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    Swal.fire({ title: 'Symbol copied!!', text: 'You can use Ctrl+V to paste it or Second Click then Paste' })
+  };
   const redirectNotice = () => {
     Swal.fire({
       title: 'Redirecting to "Create Category" page',
@@ -223,6 +232,16 @@ const Edit = () => {
             <label className='place-self-start'>Brand</label>
             <input className='border rounded-xl w-full text-black mb-5' onChange={handleInput} defaultValue={product.info.brand} name='brand' type='text' required />
             <label className='place-self-start'>Description</label>
+            <span className='flex flex-col border my-2 p-2 bg-slate-700 text-sm'>
+              <p className='text-orange-400'>If you want to do a line break use symbol <span className='text-md'>" | "</span></p>
+              <p>For example "1Example text | 2Example" would create this:</p>
+              <p>"1Example text"</p>
+              <p>"2Example"</p>
+              <div className='border p-1 m-auto bg-slate-900 border-orange-400 cursor-pointer' onClick={copySymbol}>
+                Copy Pipe Symbol (|)
+              </div>
+            </span>
+
             <textarea className='border rounded-xl w-full text-black mb-5' onChange={handleInput} value={product.info.description} rows={10} cols={1} name='description' type='text' required />
             {/* Price */}
             <label className='place-self-start' >Price</label>

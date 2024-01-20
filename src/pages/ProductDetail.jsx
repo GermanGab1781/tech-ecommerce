@@ -11,6 +11,7 @@ const ProductDetail = () => {
   const keyword = params.id
   const [product, setProduct] = useState(undefined)
   const [images, setImages] = useState([])
+  const [description, setDescription] = useState(undefined)
   const { addToCart } = useContext(CartContext)
   /* Mobile check */
   const isMobile = useMediaQuery({ query: "(max-width: 800px)" });
@@ -31,6 +32,7 @@ const ProductDetail = () => {
       const data = await getDoc(id)
       setProduct(data.data())
       setImages(setImagesForCarousel(data.data().images))
+      setDescription(data.data().info.description.split('|'))
     }
     getProductDoc()
   }, [])
@@ -54,9 +56,13 @@ const ProductDetail = () => {
               </span>
               <span className=' text-xl'>Stock Left:5</span>
             </span>
-            <span className=' flex flex-col px-4 text-lg border-y border-orange-400 py-1 my-1'>
-              <span className='text-blue-400 text-3xl'>Description</span>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur non, vitae perspiciatis in tempora magni tempore, autem ad, nam harum officiis corporis soluta voluptatibus aut facere nihil quae ab voluptatum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil, laboriosam provident obcaecati voluptatibus facilis impedit omnis. Accusamus, sapiente. Deserunt nulla dolore praesentium consectetur corporis consequatur doloribus modi vero quidem? Aliquid!
+            <span className=' flex flex-col px-4 text-lg border-y border-orange-400 py-1 my-1 min-h-[150px]'>
+              <span className='text-blue-400 text-3xl  '>Description</span>
+              {description.map((line, index) => {
+                return (
+                  <p key={index}>{line}</p>
+                )
+              })}
             </span>
             {/* Buttons */}
             <span onClick={() => addToCart(product)} className='border border-blue-400 select-none cursor-pointer bg-slate-800 hover:bg-blue-900 text-xl p-5 md:col-start-2 w-[60%] mx-auto mb-4 mt-10'>Add to Cart</span>
