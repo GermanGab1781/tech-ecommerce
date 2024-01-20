@@ -256,7 +256,6 @@ const Upload = () => {
           </div>
         </div>
 
-
         {pass
           ? <button className='border md:w-[70%] w-1/2 border-orange-400 p-5 mt-5 hover:bg-slate-800 hover:text-white text-xl font-bold ' type='submit'>Upload</button>
           : <button className='border md:w-[70%] w-1/2 border-orange-400 p-5 mt-5 text-xl font-bold bg-red-900' onClick={noCategoriesNotice}>Upload</button>
