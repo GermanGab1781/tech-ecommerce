@@ -46,15 +46,20 @@ const Home = () => {
       setBrandsPreview(initialBrandsPreview);
       setCategPreview(initialCategPreview);
       setCarousel(
-        Object.values(dataCarousel.data())
-          .filter(imageObj => imageObj.Url !== "") // Filter out empty Url values
-          .map(imageObj => ({
+        Object.entries(dataCarousel.data())
+          /* Filter empty images */
+          .filter(([key, imageObj]) => imageObj.Url !== "")
+          .map(([key, imageObj]) => ({
+            id: key,
             original: imageObj.Url,
           }))
+          .sort((a, b) => {
+            /* We order by "image1", "image2", "image3" */
+            const idA = parseInt(a.id.replace("image", ""));
+            const idB = parseInt(b.id.replace("image", ""));
+            return idA - idB;
+          })
       );
-      /* setCarousel(Object.values(dataCarousel.data()).map(imageObj => ({
-        original: imageObj.Url,
-      }))) */
     }
     getAllDocs();
   }, [])
