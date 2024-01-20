@@ -51,7 +51,6 @@ const Edit = () => {
         Swal.fire({ icon: 'error', title: 'One Image minimum' });
         reject(new Error('Empty images'));
       } else {
-        Swal.fire({ icon: 'info', title: 'Uploading images', showConfirmButton: false });
         const Urls = new Array(newImages.length);
         const uploadPromises = newImages.map((image, index) => {
           const pathName = `images/${image.name + v4()}`;
@@ -62,10 +61,8 @@ const Edit = () => {
               Urls[index] = { Url: url, path: pathName };
             });
         });
-
         Promise.all(uploadPromises)
           .then(() => {
-            Swal.fire({ icon: 'success', text: customMsg })
             resolve(Urls);
           })
           .catch((error) => {
@@ -94,7 +91,8 @@ const Edit = () => {
           info: product.info,
           images: newImgsSrc
         }).then(() => {
-          Swal.fire({ icon: 'success', title: 'Producto updated', text: 'check catalog to see changes' })
+          Swal.fire({ icon: 'success', title: 'Product updated' })
+          navigate('/admin/view/product');
         })
       })
     } else {
@@ -190,17 +188,17 @@ const Edit = () => {
       if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'bmp' || fileExtension === 'webp' || fileExtension === 'svg') {
 
         let indexImg;
-        if (images.length > 0) {
-          indexImg = images[images.length - 1].index + 1;
+        if (newImages.length > 0) {
+          indexImg = newImages[newImages.length - 1].index + 1;
         } else {
           indexImg = 0;
         }
-        if (images.length >= 5) {
-          alert('Only 5 permitted, delete one to proceed')
+        if ((newImages.length + images.length) >= 5) {
+          Swal.fire({ title: 'Only 5 images allowed', text: 'Delete one to proceed', icon: 'error' })
         } else {
           let newImgsToState = readmultifiles(e, indexImg);
-          let newImgsState = [...images, ...newImgsToState];
-          setImages(newImgsState);
+          let newImgsState = [...newImages, ...newImgsToState];
+          setNewImages(newImgsState);
         }
 
       } else {
@@ -254,10 +252,10 @@ const Edit = () => {
             {/* Already uploaded Images */}
             <div className='flex flex-col my-12'>
               <label className='text-2xl font-bold mx-auto'> Already Uploaded Images</label>
-              <div className='flex flex-wrap mt-5  gap-5 gap-y-16 place-content-center'>
+              <div className='flex flex-wrap mt-5 gap-5 gap-y-16 place-content-center border border-white'>
                 {images.map((image, index) => {
                   return (
-                    <div className='relative' key={index}>
+                    <div className='relative ' key={index}>
                       <img className='w-40 h-40' src={image.Url} alt='Loading' />
                       <span className='absolute -bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer bg-red-600 p-5 font-bold' onClick={() => deleteImage(image.path)}>DELETE</span>
                     </div>
@@ -271,12 +269,12 @@ const Edit = () => {
             <div className=' flex flex-col place-items-center border border-teal-500 p-20 w-[90vw]'>
               <input accept="image/jpeg, image/png, image/gif, image/bmp, image/webp, image/svg+xml" className='border' type="file" onChange={changeInput} />
               <div className='flex flex-row flex-wrap place-content-center gap-x-5 gap-y-7 p-5'>
-                {newImages.map((image) => {
+                {newImages.map((img) => {
                   return (
-                    <div className='relative w-fit h-fit' key={image.index}>
-                      <img className='h-32 w-32' src={image.url} alt='Cargando' />
-                      <button className='absolute -bottom-3 bg-slate-500' onClick={deleteImg.bind(this, image.index)}>BORRAR IMAGEN</button>
-                      <span className='absolute bg-green-700 p-1 -top-2 -right-2'>{image.index + 1}</span>
+                    <div className='relative w-fit h-fit' key={img.index}>
+                      <img className='h-32 w-32' src={img.url} alt='Cargando' />
+                      <button className='absolute -bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer bg-red-600 p-2 font-bold' onClick={deleteImg.bind(this, img.index)}>DELETE</button>
+                      <span className='absolute bg-green-700 p-1 -top-2 -right-2'>{img.index + 1}</span>
                     </div>
                   )
                 })}

@@ -71,7 +71,7 @@ const Home = () => {
           {/* Carousel */}
           <ReactImageGallery showBullets={true} items={carousel} renderItem={item =>
             <div className="h-[75vh] overflow-hidden">
-              <img className="w-full h-full object-fill" src={item.original} alt="Promo" />
+              <img className="w-full h-full object-fit" src={item.original} alt="Promo" />
               <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-800 via-transparent to-transparent"></div>
             </div>
           } showThumbnails={false} showFullscreenButton={false} showPlayButton={false} slideInterval={9000} autoPlay={false} additionalClass={'image-galleryHome'} />
