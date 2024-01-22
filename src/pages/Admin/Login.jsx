@@ -7,7 +7,7 @@ const Login = () => {
   const [userLogin, setUserLogin] = useState(undefined);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 1);
   }, [])
 
   const handleInput = e => {
