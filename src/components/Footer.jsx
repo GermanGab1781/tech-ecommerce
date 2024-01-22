@@ -1,4 +1,5 @@
-import { BsInstagram, BsWhatsapp, BsFacebook, BsFillTelephoneFill } from 'react-icons/bs'
+import { BsInstagram, BsWhatsapp, BsFillTelephoneFill } from 'react-icons/bs'
+import { FaGithub } from "react-icons/fa";
 import { AiOutlineMail } from 'react-icons/ai'
 import { HiLocationMarker, HiReceiptRefund } from 'react-icons/hi'
 export default function Footer() {
@@ -19,7 +20,7 @@ export default function Footer() {
         <div className="flex flex-row pt-5 gap-x-3 md:place-content-start place-content-center">
           <a href="https://www.instagram.com/german_gabriel__" target="_blank" rel='noreferrer'><BsInstagram className="h-10 w-10 scale-110 transition-all " /></a>
           <a className="md:ml-6 ml-3" href="https://wa.me/2215770092" target="_blank" rel='noreferrer'><BsWhatsapp className="h-10 w-10 scale-110 transition-all" /></a>
-          <a className="md:ml-6 ml-3" href="https://es-la.facebook.com/" target="_blank" rel='noreferrer'><BsFacebook className="h-10 w-10 scale-110 transition-all" /></a>
+          <a className="md:ml-6 ml-3" href="https://github.com/GermanGab1781" target="_blank" rel='noreferrer'><FaGithub className="h-10 w-10 scale-110 transition-all" /></a>
         </div>
       </div>
     </div>
