@@ -31,7 +31,7 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, userLogin.email, userLogin.password)
       .then(() => {
-        Swal.fire({ icon: 'success', title: 'Logueo Exitoso' })
+        Swal.fire({ icon: 'success', title: 'Logged in' })
       })
       .catch((err) => {
         Swal.fire({ icon: 'error', title: err })
@@ -39,16 +39,15 @@ const Login = () => {
   }
 
   return (
-    <div className='flex h-[70vh] items-center justify-center place-content-center text-white'>
-      <form className='flex flex-col gap-y-2 place-items-center border border-blue-900 text-center w-[80%] p-10 bg-black' onSubmit={handleSignIn}>
+    <div className='flex mt-5 items-center justify-center place-content-center text-white'>
+      <form className='flex flex-col gap-y-2 place-items-center border border-blue-900 text-center md:w-[80%] p-10 bg-black' onSubmit={handleSignIn}>
         <h1 className='text-4xl font-semibold text-white mb-5'>Admin Page</h1>
         <label className='text-2xl'>Email</label><br />
-        <input className='border border-black rounded-md w-[40%] text-black text-center' type="email" id="email" onChange={handleInput} /><br />
+        <input className='border border-black rounded-md md:w-[40%] w-[90%] text-black text-center' type="email" id="email" onChange={handleInput} /><br />
         <label className='text-2xl'>Password</label><br />
-        <input className='border border-black rounded-md w-[40%] text-black text-center' type="password" id="password" onChange={handleInput} /><br />
-        <button className='border p-3 bg-slate-800 hover:bg-orange-400 rounded-md w-[20%]'>Log in</button>
-        <div>user:admin@test.com</div>
-        <div>password:aREALLYhardPassWORD123</div>
+        <input className='border border-black rounded-md md:w-[40%] w-[90%] text-black text-center' type="password" id="password" onChange={handleInput} /><br />
+        <button className='border p-3 bg-slate-800 hover:bg-orange-400 rounded-md md:w-[20%] w-1/2'>Log in</button>
+        <div className='text-3xl whitespace-nowrap mt-10 border hover:border-orange-400 p-10 bg-orange-400 hover:bg-slate-800 cursor-pointer' onClick={() => { window.scroll(200, 300) }}>For access contact me</div>
       </form>
     </div>
   )

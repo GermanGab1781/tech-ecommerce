@@ -29,7 +29,7 @@ const Admin = () => {
         Home page Backgrounds</NavLink>
 
       <span className='cursor-pointer border border-red-400 mx-auto p-3 hover:bg-red-600'
-        onClick={() => { signOut(auth); Swal.fire({ icon: 'info', title: 'Sesion terminada' }) }}>
+        onClick={() => { signOut(auth); Swal.fire({ icon: 'info', title: 'Logged out' }) }}>
         Log out
       </span>
     </div>
