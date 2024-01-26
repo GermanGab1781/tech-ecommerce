@@ -28,13 +28,13 @@ const Checkout = () => {
     <div>
       {cart.length > 0
         ?
-        <div className='flex flex-col min-h-screen place-items-center m-auto bg-slate-300 border-2 border-orange-400'>
-          <h1 className='text-2xl py-5 font-semibold'>Check your cart before proceeding</h1>
+        <div className='flex flex-col text-white min-h-screen place-items-center m-auto bg-slate-800 border-2 border-orange-400'>
+          <h1 className='border text-3xl p-5 my-4 font-semibold bg-blue-950 text-'>Check your cart before proceeding</h1>
           {/* Cart */}
-          <div className='md:w-1/2 w-full'>
+          <div className='md:w-1/2 w-full border p-5 bg-blue-950'>
             {cart.map((item, index) => {
               return (
-                <div className='flex place-items-center place-content-between h-20 border border-red-400' key={index}>
+                <div className='flex place-items-center place-content-between h-20 border p-2 bg-slate-800' key={index}>
                   <div className='flex gap-x-2 place-items-center' >
                     <img className='w-12 h-12' src={item.info.image} alt={item.info.name} />
                     <span>{item.info.name}</span>
@@ -51,33 +51,35 @@ const Checkout = () => {
           </div>
           <div className='text-center text-4xl my-10'>TOTAL:  <span className='text-green-500'>${total}</span></div>
           {/* Payment Info */}
-          <h2 className='text-2xl'>Your info</h2>
-          <form className='border flex flex-col md:w-[40%] w-[60%]' onSubmit={handleSubmit}>
-            <label>
-              Name:
-              <br />
-              <input className='border border-black rounded-xl w-full text-black mb-5 ' type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-            </label>
-            <label>
-              Email:
-              <br />
-              <input className='border border-black rounded-xl w-full text-black mb-5 ' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </label>
-            <label>
-              Address:
-              <br />
-              <textarea className='border border-black rounded-xl w-full text-black mb-5 ' value={address} onChange={(e) => setAddress(e.target.value)} required />
-            </label>
-            <label>
-              Payment Method:
-              <br />
-              <select className='border border-black rounded-xl w-full text-black mb-5 ' value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
-                <option value="creditCard">Credit Card</option>
-                <option value="paypal">PayPal</option>
-              </select>
-            </label>
-            <button className='border md:w-[70%] w-1/2 border-orange-400 hover:border-slate-800 p-5 mt-5 bg-slate-800 hover:bg-green-600 text-white text-xl font-bold m-auto' type='submit'>Place order</button>
-          </form>
+          <span className='w-full flex flex-col place-items-center '>
+            <h2 className='text-3xl p-4 bg-orange-400 rounded-t-xl'>Your info</h2>
+            <form className='flex flex-col md:w-[40%] w-[60%] bg-orange-400 p-4 rounded-xl' onSubmit={handleSubmit}>
+              <label>
+                Name:
+                <br />
+                <input className='border border-black rounded-xl w-full text-black mb-5 ' type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+              </label>
+              <label>
+                Email:
+                <br />
+                <input className='border border-black rounded-xl w-full text-black mb-5 ' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              </label>
+              <label>
+                Address:
+                <br />
+                <textarea className='border border-black rounded-xl w-full text-black mb-5 ' value={address} onChange={(e) => setAddress(e.target.value)} required />
+              </label>
+              <label>
+                Payment Method:
+                <br />
+                <select className='border border-black rounded-xl w-full text-black mb-5 p-5 ' value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
+                  <option value="creditCard">Credit Card</option>
+                  <option value="paypal">PayPal</option>
+                </select>
+              </label>
+              <button className='border md:w-[70%] w-1/2 border-orange-400 hover:border-slate-800 p-5 mt-5 bg-slate-800 hover:bg-green-600 text-white text-xl font-bold m-auto' type='submit'>Place order</button>
+            </form>
+          </span>
         </div>
 
         :
