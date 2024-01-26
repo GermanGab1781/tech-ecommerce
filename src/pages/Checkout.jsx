@@ -29,7 +29,7 @@ const Checkout = () => {
       {cart.length > 0
         ?
         <div className='flex flex-col text-white min-h-screen place-items-center m-auto bg-slate-800 border-2 border-orange-400'>
-          <h1 className='border text-3xl p-5 my-4 font-semibold bg-blue-950 text-'>Check your cart before proceeding</h1>
+          <h1 className='border md:text-3xl text-2xl p-5 my-4 font-semibold bg-blue-950 text-center'>Check your cart before proceeding</h1>
           {/* Cart */}
           <div className='md:w-1/2 w-full border p-5 bg-blue-950'>
             {cart.map((item, index) => {
@@ -53,7 +53,7 @@ const Checkout = () => {
           {/* Payment Info */}
           <span className='w-full flex flex-col place-items-center '>
             <h2 className='text-3xl p-4 bg-orange-400 rounded-t-xl'>Your info</h2>
-            <form className='flex flex-col md:w-[40%] w-[60%] bg-orange-400 p-4 rounded-xl' onSubmit={handleSubmit}>
+            <form className='flex flex-col md:w-[40%] w-[90%] bg-orange-400 p-4 rounded-xl' onSubmit={handleSubmit}>
               <label>
                 Name:
                 <br />
